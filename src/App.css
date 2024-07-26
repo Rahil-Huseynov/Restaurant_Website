@@ -1,0 +1,63 @@
+.logo {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.logo_cart{
+  width: 50px;
+}
+.user_cart_container{
+  display: flex;
+  gap: 1rem ;
+}
+
+.logo_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.search {
+  width: 300px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  text-align: center;
+}
+
+.logo_name {
+  font-family: "Playwrite AR", cursive;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.meal_list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+
+}
+.meal_items{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+.button_container{
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
