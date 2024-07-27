@@ -3,6 +3,8 @@ import logo from './../../assets/logo.png';
 import cart from './../../assets/shopping-cart.png';
 import { Link } from 'react-router-dom';
 import './Cart_Login.css';
+import searchicon from './../../assets/search_icon.png'
+
 
 const Cart_Login = () => {
     const [cartItems, setCartItems] = useState<any[]>([]);
@@ -14,6 +16,8 @@ const Cart_Login = () => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const [address, setAddress] = useState('');
+
+    const [isAddressValid, setIsAddressValid] = useState(true);
 
     useEffect(() => {
         const savedCart = localStorage.getItem('cartItems');
@@ -44,11 +48,26 @@ const Cart_Login = () => {
     const handlePlaceOrder = () => {
         const orders = JSON.parse(localStorage.getItem('orders') || '[]');
 
+        if (!address.trim()) {
+            setIsAddressValid(false);
+            return;
+        }
+
+
         const today = new Date()
 
-        const nowdate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        const year = today.getFullYear();
 
-        console.log(nowdate)
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+
+        const day = String(today.getDate()).padStart(2, '0');
+
+        const hour = String(today.getHours()).padStart(2, '0');
+
+        const minute = String(today.getMinutes()).padStart(2, '0');
+
+        const nowdate = `${year}-${month}-${day} (${hour}:${minute})`;
+
         const newOrder = {
 
             items: cartItems,
@@ -94,6 +113,7 @@ const Cart_Login = () => {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
+                    <img width={20} style={{ cursor: 'pointer' }} src={searchicon} />
                 </div>
                 <div className='user_cart_container'>
                     <Link to="/cart_login">
@@ -160,7 +180,7 @@ const Cart_Login = () => {
                                         <p>Total: ${item.totalPrice}</p>
                                     </div>
                                     <div>
-                                        <button className='delete_button' onClick={() => handleDelete(index)}>Delete</button>
+                                        <button className='button-77' onClick={() => handleDelete(index)}>Delete</button>
                                     </div>
                                 </div>
                             ))}
@@ -193,16 +213,19 @@ const Cart_Login = () => {
                                 <div className='address_container'>
                                     <p className='address'>Your Address: </p>
                                     <input
-                                        className='address_input'
+                                        className={`address_input ${!isAddressValid ? 'invalid' : ''}`}
                                         type="text"
                                         placeholder='Your Address'
                                         value={address}
-                                        onChange={(e) => setAddress(e.target.value)}
+                                        onChange={(e) => {
+                                            setAddress(e.target.value);
+                                            setIsAddressValid(true);
+                                        }}
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <button onClick={handlePlaceOrder}>Place an order!</button>
+                                    <button className='button-79' onClick={handlePlaceOrder}>Place an order!</button>
                                 </div>
                             </div>
                         </div>

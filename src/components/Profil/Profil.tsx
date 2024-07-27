@@ -13,17 +13,39 @@ const Profil = () => {
     const [passwordError, setPasswordError] = useState<boolean>(false);
     const navigate = useNavigate();
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+
     const handleSignUp = () => {
+        if (!emailRegex.test(email)) {
+    
+            setEmailError(true);
+    
+            return;
+        }
+
+        if (!passwordRegex.test(password)) {
+    
+            setPasswordError(true);
+    
+            return;
+        }
+
         localStorage.setItem('name', name);
+
         localStorage.setItem('userEmail', email);
+    
         localStorage.setItem('userPassword', password);
 
         const successPanel = document.getElementById('successPanel');
         if (successPanel) {
+          
             successPanel.classList.add('active');
             setTimeout(() => {
                 successPanel.classList.remove('active');
             }, 2000);
+        
         }
 
         setTimeout(() => {
@@ -33,9 +55,11 @@ const Profil = () => {
 
     const handleLogin = () => {
         const storedEmail = localStorage.getItem('userEmail');
+        
         const storedPassword = localStorage.getItem('userPassword');
 
         if (email === storedEmail && password === storedPassword) {
+        
             const successPanel = document.getElementById('successPanel');
             if (successPanel) {
                 successPanel.classList.add('active');
@@ -48,20 +72,25 @@ const Profil = () => {
             }, 1000);
         } else {
             const errorPanel = document.getElementById('errorPanel');
+        
             if (errorPanel) {
                 errorPanel.classList.add('active');
                 setTimeout(() => {
                     errorPanel.classList.remove('active');
                 }, 2000);
-                setEmailError(true);
-                setPasswordError(true);
             }
+            setEmailError(true);
+        
+            setPasswordError(true);
+        
         }
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         e.target.classList.remove('error');
+    
         setEmailError(false);
+    
         setPasswordError(false);
     };
 
@@ -103,9 +132,10 @@ const Profil = () => {
                                 name="txt"
                                 placeholder="User name"
                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+                                onFocus={handleFocus}
                             />
                             <input
-                                className='input_profil'
+                                className={`input_profil ${emailError ? 'error' : ''}`}
                                 type="email"
                                 name="email"
                                 placeholder="Email"
@@ -113,7 +143,7 @@ const Profil = () => {
                                 onFocus={handleFocus}
                             />
                             <input
-                                className='input_profil'
+                                className={`input_profil ${passwordError ? 'error' : ''}`}
                                 type="password"
                                 name="pswd"
                                 placeholder="Password"

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './App.css'
 import logo from './assets/logo.png'
 import user from './assets/user.png'
+import searchicon from './assets/search_icon.png'
 import cart from './assets/shopping-cart.png'
 import { useAppSelector } from './redux/hook'
 import { useGetMealQuery } from './Services/Api/MealApi'
@@ -80,6 +81,7 @@ function App() {
           <img className='logo' src={logo} alt="Logo" />
           <p className='logo_name'>MealOrder</p>
         </div>
+        
         <div className='search_container'>
           <input
             className='search'
@@ -88,6 +90,7 @@ function App() {
             value={searchQuery}
             onChange={handleSearchChange}
           />
+          <img width={20} style={{cursor:'pointer'}} src={searchicon} />
         </div>
         <div className='user_cart_container'>
           <Link to="/profil">
@@ -116,8 +119,8 @@ function App() {
               <p>Price: ${meal.price}</p>
             </div>
             <div className='button_container'>
-              <Link to='/profil' onClick={() => addToCart(meal, quantities[meal.idCategory] || 1)}>Add to Cart</Link>
-              <button onClick={() => openModal(meal)}>Detail</button>
+              <Link className='button-24' style={{textDecoration:'none'}} to='/profil' onClick={() => addToCart(meal, quantities[meal.idCategory] || 1)}>Add to Cart</Link>
+              <button className='button-24' onClick={() => openModal(meal)}>Detail</button>
             </div>
           </div>
         ))}

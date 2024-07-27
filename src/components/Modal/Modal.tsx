@@ -42,8 +42,8 @@ const Modal: React.FC<ModalProps> = ({ meal, isOpen, onClose, onAddToCart }) => 
                             style={{ width: '50px' }}
                         />
                     </div>
-                    <div>
-                        <Link to= '/profil' onClick={handleAddToCart}>Add to Cart</Link>
+                    <div className='button_add_cart_modal_container'>
+                        <Link style={{textDecoration:'none'}} className='button-87' to= '/profil' onClick={handleAddToCart}>Add to Cart</Link>
                     </div>
                 </div>
 

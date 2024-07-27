@@ -6,6 +6,7 @@ import cart from './../../assets/shopping-cart.png';
 import { useGetMealQuery } from '../../Services/Api/MealApi';
 import { useAppSelector } from '../../redux/hook';
 import Modal_Login from '../Modal_Login/Modal_Login';
+import searchicon from './../../assets/search_icon.png'
 
 function Profil_Login() {
   const { } = useGetMealQuery();
@@ -109,6 +110,7 @@ function Profil_Login() {
             value={searchQuery}
             onChange={handleSearchChange}
           />
+          <img width={20} style={{ cursor: 'pointer' }} src={searchicon} />
         </div>
         <div className='user_cart_container'>
           <Link to="/cart_login">
@@ -141,8 +143,8 @@ function Profil_Login() {
               <p>Price: ${meal.price}</p>
             </div>
             <div className='button_container'>
-              <button onClick={() => addToCart(meal, quantities[meal.idCategory] || 1)}>Add to Cart</button>
-              <button onClick={() => openModal(meal)}>Detail</button>
+              <button className='button-24' onClick={() => addToCart(meal, quantities[meal.idCategory] || 1)}>Add to Cart</button>
+              <button className='button-24' onClick={() => openModal(meal)}>Detail</button>
             </div>
           </div>
         ))}

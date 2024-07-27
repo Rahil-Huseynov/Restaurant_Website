@@ -41,8 +41,8 @@ const Modal_Login: React.FC<ModalProps> = ({ meal, isOpen, onClose, onAddToCart 
                             style={{ width: '50px' }}
                         />
                     </div>
-                    <div>
-                        <button onClick={handleAddToCart}>Add to Cart</button>
+                    <div className='button_add_cart_modal_container'>
+                        <button className='button-87' onClick={handleAddToCart}>Add to Cart</button>
                     </div>
                 </div>
 
