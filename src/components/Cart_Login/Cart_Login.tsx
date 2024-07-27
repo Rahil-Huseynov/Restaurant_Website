@@ -1,46 +1,81 @@
-import React, { useEffect, useState } from 'react'
-import logo from './../../assets/logo.png'
-import cart from './../../assets/shopping-cart.png'
-import { Link } from 'react-router-dom'
-import './Cart_Login.css'
+import { useEffect, useState } from 'react';
+import logo from './../../assets/logo.png';
+import cart from './../../assets/shopping-cart.png';
+import { Link } from 'react-router-dom';
+import './Cart_Login.css';
 
-const Cart_Login: React.FC = () => {
-    const [cartItems, setCartItems] = useState<any[]>([])
+const Cart_Login = () => {
+    const [cartItems, setCartItems] = useState<any[]>([]);
+
+    const [order, setOrder] = useState<any[]>([]);
 
     const [userName, setUserName] = useState('');
 
-    const [searchQuery, setSearchQuery] = useState('')
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const [address, setAddress] = useState('');
 
     useEffect(() => {
-        const savedCart = localStorage.getItem('cartItems')
+        const savedCart = localStorage.getItem('cartItems');
 
-        if (savedCart) {
-            setCartItems(JSON.parse(savedCart))
-        }
+        const savedOrders = localStorage.getItem('orders');
 
-    }, [])
+        const savedName = localStorage.getItem('name');
+
+        if (savedCart) setCartItems(JSON.parse(savedCart));
+
+        if (savedOrders) setOrder(JSON.parse(savedOrders));
+
+        if (savedName) setUserName(savedName);
+    }, []);
 
     const handleDelete = (index: number) => {
+        const updatedCartItems = [...cartItems];
 
-        const updatedCartItems = [...cartItems]
+        updatedCartItems.splice(index, 1);
 
-        updatedCartItems.splice(index, 1)
+        setCartItems(updatedCartItems);
 
-        setCartItems(updatedCartItems)
+        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+    };
 
-        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems))
-    }
+    const totalPrice = cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
+
+    const handlePlaceOrder = () => {
+        const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+
+        const today = new Date()
+
+        const nowdate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+        console.log(nowdate)
+        const newOrder = {
+
+            items: cartItems,
+
+            orderDate: nowdate,
+
+            totalPrice,
+
+            address,
+        };
+
+        const updatedOrders = [...orders, newOrder];
+
+        localStorage.setItem('orders', JSON.stringify(updatedOrders));
+
+        setCartItems([]);
+
+        localStorage.removeItem('cartItems');
+
+        setAddress('');
+
+        window.location.reload()
+    };
 
     const filteredItems = cartItems.filter(item =>
-
         item.strCategory.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    useEffect(() => {
-        const savedName = localStorage.getItem('name');
-        if (savedName) {
-            setUserName(savedName);
-        }
-    }, []);
+    );
 
     return (
         <>
@@ -73,31 +108,109 @@ const Cart_Login: React.FC = () => {
                 </div>
             </div>
             <hr />
+            <h2 style={{ textAlign: 'center' }}>Order History</h2>
+            {order.length === 0 ? (
+                <p style={{ textAlign: 'center' }}>No orders found.</p>
+            ) : (
+                <div className="order_history">
+                    {order.map((orderItem, orderIndex) => (
+                        <div key={orderIndex} className="order_item">
+                            <div className="order_items">
+                                <div className='order_items_item'>
+                                    <div className='container_meal'>
+                                        <img width={50} src={logo} />
+                                    </div>
+                                    <div className='order_product_container'>
+                                        {orderItem.items.slice(0, 2).map((item: any, itemIndex: any) => (
+                                            <div key={itemIndex} className="order_product">
+                                                <p>{item.strCategory}
+                                                    {(orderItem.items.length > 2 || (orderItem.items.length === 2 && itemIndex === 0)) && (
+                                                        <span>,</span>
+                                                    )}
+                                                </p>
+                                            </div>
+                                        ))}
+                                        {orderItem.items.length > 2 && (
+                                            <p>...and {orderItem.items.length - 2} </p>
+                                        )}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Order Date: {orderItem.orderDate}</p>
+                            <p>Total: ${orderItem.totalPrice}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
             <div className="cart">
                 <h1 style={{ textAlign: 'center' }}>Shopping Cart</h1>
                 {filteredItems.length === 0 ? (
                     <p style={{ textAlign: 'center' }}>No items found.</p>
                 ) : (
-                    <div className='container'>
-                        {filteredItems.map((item, index) => (
-                            <div key={index} className='container_item'>
-                                <div>
-                                    <img width={100} src={item.strCategoryThumb} alt={item.strCategory} />
-                                    <h3>{item.strCategory}</h3>
-                                    <p>Price: ${item.price}</p>
-                                    <p>Quantity: {item.quantity}</p>
-                                    <p>Total: ${item.totalPrice}</p>
+                    <div className='all_items_cart_container'>
+                        <div className='container'>
+                            {filteredItems.map((item, index) => (
+                                <div key={index} className='container_item'>
+                                    <div>
+                                        <img width={100} src={item.strCategoryThumb} />
+                                        <h3>{item.strCategory}</h3>
+                                        <p>Price: ${item.price}</p>
+                                        <p>Quantity: {item.quantity}</p>
+                                        <p>Total: ${item.totalPrice}</p>
+                                    </div>
+                                    <div>
+                                        <button className='delete_button' onClick={() => handleDelete(index)}>Delete</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div>
+                            <div className='container_cart_buy'>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td>Meal</td>
+                                            <td>Price</td>
+                                            <td>Quantity</td>
+                                            <td>Total</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {filteredItems.map((item, index) => (
+                                            <tr key={index}>
+                                                <td>{item.strCategory}</td>
+                                                <td>{item.price}</td>
+                                                <td>{item.quantity}</td>
+                                                <td>{item.totalPrice}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                                <div className='TotalPriceContainer'>
+                                    <p>Total Price: {totalPrice}</p>
+                                </div>
+                                <div className='address_container'>
+                                    <p className='address'>Your Address: </p>
+                                    <input
+                                        className='address_input'
+                                        type="text"
+                                        placeholder='Your Address'
+                                        value={address}
+                                        onChange={(e) => setAddress(e.target.value)}
+                                        required
+                                    />
                                 </div>
                                 <div>
-                                    <button className='delete_button' onClick={() => handleDelete(index)}>Delete</button>
+                                    <button onClick={handlePlaceOrder}>Place an order!</button>
                                 </div>
                             </div>
-                        ))}
+                        </div>
                     </div>
                 )}
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Cart_Login
+export default Cart_Login;

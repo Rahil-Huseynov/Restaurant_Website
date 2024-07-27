@@ -1,59 +1,156 @@
-.container_item{
-    display: grid;
-    padding: 2rem;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    width: 200px;
+.container_item {
+  display: grid;
+  padding: 2rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 200px;
 }
 
-.container{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap:  2rem;
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 
-.delete_button{
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+.delete_button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
 .delete_button:hover {
-    background-color: darkred;
+  background-color: darkred;
 }
 
 
 .dropbtn {
-    color: black;
-    font-size: 16px;
-    border: none;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  .dropdown:hover .dropdown-content {display: block;}
-    
+  color: black;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+.cart_buy {
+  display: flex;
+  justify-content: space-around;
+}
+
+.container_cart_buy {
+  display: grid;
+  padding: 2rem;
+  border: 1px solid black;
+  width: 500px;
+  text-align: center;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+.TotalPriceContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.all_items_cart_container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.item_cart {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+th, td {
+  padding: 10px;
+}
+
+.address_container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2rem;
+}
+.address_input{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 70% ;
+  height: 20px;
+  text-align: center;
+}
+
+.order_history{
+  display: flex;
+  gap: 1rem;
+  text-align: center;
+  overflow: scroll;
+  width: 100%;
+}
+
+.order_items{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.order_item{
+  border: 1px solid rgba(15, 0, 0, 0.226);
+  min-width: 200px;
+  border-radius: 30px;
+  padding: 1rem;
+}
+
+.order_items_item{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.order_product_container{
+  display: flex;  
+}
+.container_meal{
+  display: flex;
+  justify-content: center;
+}

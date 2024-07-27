@@ -24,6 +24,9 @@ const Profil = () => {
         localStorage.setItem('userPassword', password);
 
         alert('Sign-up successful!');
+        
+        window.location.reload();
+
     };
 
     const handleLogin = () => {
