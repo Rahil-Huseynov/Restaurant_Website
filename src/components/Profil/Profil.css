@@ -87,3 +87,61 @@
 #chk:checked ~ .signup label{
 	transform: scale(.6);
 }
+
+
+
+.checkpanel_container {
+    display: none;
+    justify-content: end; 
+}
+.checkpanel_container {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translateX(-100%);
+    z-index: 1000; 
+    display: flex;
+    justify-content: center; 
+}
+
+.checkpanel_container {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translateX(-100%);
+    z-index: 1000; 
+    display: flex;
+    justify-content: center;
+}
+
+.panel {
+    text-align: center;
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    display: none; 
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.panel.active {
+    display: block;
+    opacity: 1;
+}
+
+.panel1 {
+    background-color: green;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.panel2 {
+    background-color: red;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.input_profil.error {
+    border: 1px solid red;
+}
