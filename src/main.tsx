@@ -7,6 +7,7 @@ import { store } from './redux/store.ts'
 import Profil from './components/Profil/Profil.tsx'
 import Profil_Login from './components/Profil_Login/Profil_Login.tsx'
 import Cart_Login from './components/Cart_Login/Cart_Login.tsx'
+import Admin from './components/Admin/Admin.tsx'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: 'cart_login',
     element: <Cart_Login />
+  },
+  {
+    path: 'admin',
+    element: <Admin />
   }
 ])
 

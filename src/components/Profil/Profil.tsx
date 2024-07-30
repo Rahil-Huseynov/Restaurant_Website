@@ -19,33 +19,33 @@ const Profil = () => {
 
     const handleSignUp = () => {
         if (!emailRegex.test(email)) {
-    
+
             setEmailError(true);
-    
+
             return;
         }
 
         if (!passwordRegex.test(password)) {
-    
+
             setPasswordError(true);
-    
+
             return;
         }
 
         localStorage.setItem('name', name);
 
         localStorage.setItem('userEmail', email);
-    
+
         localStorage.setItem('userPassword', password);
 
         const successPanel = document.getElementById('successPanel');
         if (successPanel) {
-          
+
             successPanel.classList.add('active');
             setTimeout(() => {
                 successPanel.classList.remove('active');
             }, 2000);
-        
+
         }
 
         setTimeout(() => {
@@ -55,11 +55,11 @@ const Profil = () => {
 
     const handleLogin = () => {
         const storedEmail = localStorage.getItem('userEmail');
-        
+
         const storedPassword = localStorage.getItem('userPassword');
 
         if (email === storedEmail && password === storedPassword) {
-        
+
             const successPanel = document.getElementById('successPanel');
             if (successPanel) {
                 successPanel.classList.add('active');
@@ -70,9 +70,23 @@ const Profil = () => {
             setTimeout(() => {
                 navigate('/profil_login');
             }, 1000);
-        } else {
+        }
+
+        else if (email === 'admin' && password === 'admin') {
+            const successPanel = document.getElementById('successPanel');
+            if (successPanel) {
+                successPanel.classList.add('active');
+                setTimeout(() => {
+                    successPanel.classList.remove('active');
+                }, 2000);
+            }
+            setTimeout(() => {
+                navigate('/admin');
+            }, 1000);
+        }
+        else {
             const errorPanel = document.getElementById('errorPanel');
-        
+
             if (errorPanel) {
                 errorPanel.classList.add('active');
                 setTimeout(() => {
@@ -80,17 +94,17 @@ const Profil = () => {
                 }, 2000);
             }
             setEmailError(true);
-        
+
             setPasswordError(true);
-        
+
         }
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         e.target.classList.remove('error');
-    
+
         setEmailError(false);
-    
+
         setPasswordError(false);
     };
 

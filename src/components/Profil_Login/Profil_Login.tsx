@@ -3,80 +3,40 @@ import { Link } from 'react-router-dom';
 import './Profil_Login.css';
 import logo from './../../assets/logo.png';
 import cart from './../../assets/shopping-cart.png';
-import { useGetMealQuery } from '../../Services/Api/MealApi';
-import { useAppSelector } from '../../redux/hook';
 import Modal_Login from '../Modal_Login/Modal_Login';
-import searchicon from './../../assets/search_icon.png'
+import searchicon from './../../assets/search_icon.png';
+
+interface Meal {
+  idCategory: number;
+  strCategory: string;
+  strCategoryThumb: string;
+  price?: number;
+  quantity?: number;
+  totalPrice?: number;
+}
 
 function Profil_Login() {
-  const { } = useGetMealQuery();
+  const storedData = localStorage.getItem('filteredData');
 
-  const data = useAppSelector((state: any) => state.meal.meals);
+  const data: Meal[] = storedData ? JSON.parse(storedData) : [];
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedMeal, setSelectedMeal] = useState<any>(null);
-  const [cartItems, setCartItems] = useState<any[]>(() => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const [selectedMeal, setSelectedMeal] = useState<Meal | null>(null);
+
+  const [cartItems, setCartItems] = useState<Meal[]>(() => {
+
     const savedCart = localStorage.getItem('cartItems');
+
     return savedCart ? JSON.parse(savedCart) : [];
+
   });
 
   const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
 
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const [userName, setUserName] = useState('');
-
-  const addRandomPrices = (meals: any[]) => {
-    return meals.map(meal => ({
-      ...meal,
-      price: 10
-    }));
-  };
-
-  const mealsWithPrices = addRandomPrices(data || []);
-
-  const filteredMeals = mealsWithPrices.filter(meal =>
-    meal.strCategory.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const openModal = (meal: any) => {
-    setSelectedMeal(meal);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setSelectedMeal(null);
-    setIsModalOpen(false);
-  };
-
-  const addToCart = (meal: any, quantity: number) => {
-    const existingMealIndex = cartItems.findIndex(item => item.idCategory === meal.idCategory);
-
-    if (existingMealIndex > -1) {
-      const updatedCartItems = [...cartItems];
-      const existingMeal = updatedCartItems[existingMealIndex];
-
-      existingMeal.quantity += quantity;
-      existingMeal.totalPrice = existingMeal.price * existingMeal.quantity;
-
-      updatedCartItems[existingMealIndex] = existingMeal;
-      setCartItems(updatedCartItems);
-      localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
-    } else {
-      const updatedMeal = { ...meal, quantity, totalPrice: meal.price * quantity };
-      const updatedCart = [...cartItems, updatedMeal];
-      setCartItems(updatedCart);
-      localStorage.setItem('cartItems', JSON.stringify(updatedCart));
-    }
-  };
-
-  const handleQuantityChange = (id: number, value: number) => {
-    setQuantities(prev => ({ ...prev, [id]: value }));
-  };
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-  };
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  
+  const [userName, setUserName] = useState<string>('');
 
   useEffect(() => {
     if (isModalOpen) {
@@ -92,6 +52,67 @@ function Profil_Login() {
       setUserName(savedName);
     }
   }, []);
+
+  const addRandomPrices = (meals: Meal[]): Meal[] => {
+    return meals.map(meal => ({
+      ...meal,
+      price: meal.price || 10,
+    }));
+  };
+
+  const mealsWithPrices = addRandomPrices(data);
+
+  const filteredMeals = mealsWithPrices.filter(meal =>
+    meal.strCategory.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const openModal = (meal: Meal) => {
+    setSelectedMeal(meal);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedMeal(null);
+    setIsModalOpen(false);
+  };
+
+  const addToCart = (meal: Meal, quantity: number) => {
+    const existingMealIndex = cartItems.findIndex(item => item.idCategory === meal.idCategory);
+
+    if (existingMealIndex > -1) {
+
+      const updatedCartItems = [...cartItems];
+
+      const existingMeal = updatedCartItems[existingMealIndex];
+
+      existingMeal.quantity = (existingMeal.quantity || 0) + quantity;
+
+      existingMeal.totalPrice = existingMeal.price! * existingMeal.quantity;
+
+      updatedCartItems[existingMealIndex] = existingMeal;
+
+      setCartItems(updatedCartItems);
+
+      localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+
+    } else {
+      const updatedMeal: Meal = { ...meal, quantity, totalPrice: meal.price! * quantity };
+
+      const updatedCart = [...cartItems, updatedMeal];
+
+      setCartItems(updatedCart);
+
+      localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+    }
+  };
+
+  const handleQuantityChange = (id: number, value: number) => {
+    setQuantities(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
 
   return (
     <>
@@ -110,7 +131,7 @@ function Profil_Login() {
             value={searchQuery}
             onChange={handleSearchChange}
           />
-          <img width={20} style={{ cursor: 'pointer' }} src={searchicon} />
+          <img width={20} style={{ cursor: 'pointer' }} src={searchicon} alt="Search Icon" />
         </div>
         <div className='user_cart_container'>
           <Link to="/cart_login">
@@ -122,12 +143,11 @@ function Profil_Login() {
               <Link to='/'>Log out</Link>
             </div>
           </div>
-
         </div>
       </div>
       <hr />
       <div className='meal_list'>
-        {filteredMeals.map((meal: any) => (
+        {filteredMeals.map((meal: Meal) => (
           <div className='meal_items' key={meal.idCategory}>
             <img width={200} src={meal.strCategoryThumb} alt={meal.strCategory} />
             <h3>{meal.strCategory}</h3>
