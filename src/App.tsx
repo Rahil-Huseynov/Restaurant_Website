@@ -35,16 +35,16 @@ function App() {
   }
 
   useEffect(() => {
-    if (data && !filteredData.length) {
-      const mealsWithPrices = addRandomPrices(data)
-      const initialFilteredMeals = mealsWithPrices.filter(meal =>
+    if (data) {
+      const mealsWithPrices = addRandomPrices(data);
+      const filteredMeals = mealsWithPrices.filter(meal =>
         meal.strCategory.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      setFilteredData(initialFilteredMeals)
-      localStorage.setItem('filteredData', JSON.stringify(initialFilteredMeals))
+      );
+      setFilteredData(filteredMeals);
+      localStorage.setItem('filteredData', JSON.stringify(filteredMeals));
     }
-  }, [data, filteredData.length, searchQuery])
-
+  }, [data, searchQuery]); 
+  
   const openModal = (meal: any) => {
     setSelectedMeal(meal)
     setIsModalOpen(true)
