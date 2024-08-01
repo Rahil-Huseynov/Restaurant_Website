@@ -35,8 +35,10 @@ function Profil_Login() {
   const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
 
   const [searchQuery, setSearchQuery] = useState<string>('');
-  
+
   const [userName, setUserName] = useState<string>('');
+
+  const [orderCount, setorderCount] = useState<number>(0)
 
   useEffect(() => {
     if (isModalOpen) {
@@ -45,6 +47,13 @@ function Profil_Login() {
       document.body.classList.remove('no-scroll');
     }
   }, [isModalOpen]);
+
+
+  useEffect(() => {
+    const counter = cartItems.filter(item => item).length
+    setorderCount(counter)
+  }, [cartItems])
+
 
   useEffect(() => {
     const savedName = localStorage.getItem('name');
@@ -134,9 +143,12 @@ function Profil_Login() {
           <img width={20} style={{ cursor: 'pointer' }} src={searchicon} alt="Search Icon" />
         </div>
         <div className='user_cart_container'>
-          <Link to="/cart_login">
-            <img className='logo_cart' src={cart} alt="Cart" />
-          </Link>
+          <div>
+            <Link style={{textDecoration :'none', color:'black'}} to="/cart_login">
+              <img className='logo_cart' src={cart} alt="Cart" />
+              <span>{orderCount}</span>
+            </Link>
+          </div>
           <div className="dropdown">
             <p className="dropbtn">Hi, {userName}!</p>
             <div className="dropdown-content">

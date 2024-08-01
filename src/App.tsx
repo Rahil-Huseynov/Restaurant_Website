@@ -13,7 +13,6 @@ function App() {
   useGetMealQuery()
 
   const data = useAppSelector((state) => state.meal.meals)
-
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedMeal, setSelectedMeal] = useState<any>(null)
   const [cartItems, setCartItems] = useState<any[]>(() => {
@@ -27,12 +26,19 @@ function App() {
     return savedFilteredData ? JSON.parse(savedFilteredData) : []
   })
 
+  const [orderCount, setorderCount] = useState<number>(0)
   const addRandomPrices = (meals: any[]) => {
     return meals.map(meal => ({
       ...meal,
       price: 10
     }))
   }
+
+  useEffect(() => {
+    const counter = cartItems.filter(item => item).length
+    setorderCount(counter)
+  }, [cartItems])
+
 
   useEffect(() => {
     if (data) {
@@ -43,8 +49,8 @@ function App() {
       setFilteredData(filteredMeals);
       localStorage.setItem('filteredData', JSON.stringify(filteredMeals));
     }
-  }, [data, searchQuery]); 
-  
+  }, [data, searchQuery]);
+
   const openModal = (meal: any) => {
     setSelectedMeal(meal)
     setIsModalOpen(true)
@@ -81,7 +87,7 @@ function App() {
   return (
     <>
       <div className='container_header'>
-        <a style={{textDecoration:'none', color:'black'}} href="/">
+        <a style={{ textDecoration: 'none', color: 'black' }} href="/">
           <div className='logo_container'>
             <img className='logo' src={logo} alt="Logo" />
             <p className='logo_name'>MealOrder</p>
@@ -99,9 +105,12 @@ function App() {
           <img width={20} style={{ cursor: 'pointer' }} src={searchicon} />
         </div>
         <div className='user_cart_container'>
-          <Link to="/profil">
-            <img className='logo_cart' src={cart} alt="Cart" />
-          </Link>
+          <div>
+            <Link style={{textDecoration :'none', color:'black'}} to="/profil">
+              <img className='logo_cart' src={cart} alt="Cart" />
+              <span>{orderCount}</span>
+            </Link>
+          </div>
           <Link to='/profil'>
             <img className='logo_cart' src={user} alt="User" />
           </Link>

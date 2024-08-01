@@ -19,6 +19,14 @@ const Cart_Login = () => {
 
     const [isAddressValid, setIsAddressValid] = useState(true);
 
+    const [orderCount, setorderCount] = useState<number>(0)
+
+    useEffect(() => {
+        const counter = cartItems.filter(item => item).length
+        setorderCount(counter)
+    }, [cartItems])
+
+
     useEffect(() => {
         const savedCart = localStorage.getItem('cartItems');
 
@@ -116,9 +124,12 @@ const Cart_Login = () => {
                     <img width={20} style={{ cursor: 'pointer' }} src={searchicon} />
                 </div>
                 <div className='user_cart_container'>
-                    <Link to="/cart_login">
-                        <img className='logo_cart' src={cart} alt="Cart" />
-                    </Link>
+                    <div>
+                        <Link style={{ textDecoration: 'none', color: 'black' }} to="/cart_login">
+                            <img className='logo_cart' src={cart} alt="Cart" />
+                            <span>{orderCount}</span>
+                        </Link>
+                    </div>
                     <div className="dropdown">
                         <p className="dropbtn">Hi, {userName}!</p>
                         <div className="dropdown-content">
