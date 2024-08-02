@@ -1,88 +1,92 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import './App.css'
-import logo from './assets/logo.png'
-import user from './assets/user.png'
-import searchicon from './assets/search_icon.png'
-import cart from './assets/shopping-cart.png'
-import { useAppSelector } from './redux/hook'
-import { useGetMealQuery } from './Services/Api/MealApi'
-import Modal from './components/Modal/Modal'
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './App.css';
+import logo from './assets/logo.png';
+import user from './assets/user.png';
+import searchicon from './assets/search_icon.png';
+import cart from './assets/shopping-cart.png';
+import { useAppSelector } from './redux/hook';
+import { useGetMealQuery } from './Services/Api/MealApi';
+import Modal from './components/Modal/Modal';
 
 function App() {
-  useGetMealQuery()
-
-  const data = useAppSelector((state) => state.meal.meals)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedMeal, setSelectedMeal] = useState<any>(null)
+  useGetMealQuery();
+  const data = useAppSelector((state) => state.meal.meals);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMeal, setSelectedMeal] = useState<any>(null);
   const [cartItems, setCartItems] = useState<any[]>(() => {
-    const savedCart = localStorage.getItem('cartItems')
-    return savedCart ? JSON.parse(savedCart) : []
-  })
-  const [quantities, setQuantities] = useState<{ [key: number]: number }>({})
-  const [searchQuery, setSearchQuery] = useState('')
+    const savedCart = localStorage.getItem('cartItems');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+  const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
+  const [searchQuery, setSearchQuery] = useState('');
   const [filteredData, setFilteredData] = useState<any[]>(() => {
-    const savedFilteredData = localStorage.getItem('filteredData')
-    return savedFilteredData ? JSON.parse(savedFilteredData) : []
-  })
+    const savedFilteredData = localStorage.getItem('filteredData');
+    return savedFilteredData ? JSON.parse(savedFilteredData) : [];
+  });
+  const [orderCount, setOrderCount] = useState<number>(0);
 
-  const [orderCount, setorderCount] = useState<number>(0)
   const addRandomPrices = (meals: any[]) => {
     return meals.map(meal => ({
       ...meal,
       price: 10
-    }))
-  }
+    }));
+  };
 
   useEffect(() => {
-    const counter = cartItems.filter(item => item).length
-    setorderCount(counter)
-  }, [cartItems])
-
+    const counter = cartItems.length;
+    setOrderCount(counter);
+  }, [cartItems]);
 
   useEffect(() => {
-    if (data) {
-      const mealsWithPrices = addRandomPrices(data);
-      const filteredMeals = mealsWithPrices.filter(meal =>
-        meal.strCategory.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setFilteredData(filteredMeals);
-      localStorage.setItem('filteredData', JSON.stringify(filteredMeals));
+    if (data && data.length > 0) {
+      const savedFilteredData = localStorage.getItem('filteredData');
+      
+      if (savedFilteredData) {
+        setFilteredData(JSON.parse(savedFilteredData));
+      } else {
+        const mealsWithPrices = addRandomPrices(data);
+        const filteredMeals = mealsWithPrices.filter(meal =>
+          meal.strCategory.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setFilteredData(filteredMeals);
+        localStorage.setItem('filteredData', JSON.stringify(filteredMeals));
+      }
     }
   }, [data, searchQuery]);
 
   const openModal = (meal: any) => {
-    setSelectedMeal(meal)
-    setIsModalOpen(true)
-  }
+    setSelectedMeal(meal);
+    setIsModalOpen(true);
+  };
 
   const closeModal = () => {
-    setSelectedMeal(null)
-    setIsModalOpen(false)
-  }
+    setSelectedMeal(null);
+    setIsModalOpen(false);
+  };
 
   const addToCart = (meal: any, quantity: number) => {
-    const updatedMeal = { ...meal, quantity, totalPrice: meal.price * quantity }
-    const updatedCart = [...cartItems, updatedMeal]
-    setCartItems(updatedCart)
-    localStorage.setItem('cartItems', JSON.stringify(updatedCart))
-  }
+    const updatedMeal = { ...meal, quantity, totalPrice: meal.price * quantity };
+    const updatedCart = [...cartItems, updatedMeal];
+    setCartItems(updatedCart);
+    localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+  };
 
   const handleQuantityChange = (id: number, value: number) => {
-    setQuantities(prev => ({ ...prev, [id]: value }))
-  }
+    setQuantities(prev => ({ ...prev, [id]: value }));
+  };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value)
-  }
+    setSearchQuery(event.target.value);
+  };
 
   useEffect(() => {
     if (isModalOpen) {
-      document.body.classList.add('no-scroll')
+      document.body.classList.add('no-scroll');
     } else {
-      document.body.classList.remove('no-scroll')
+      document.body.classList.remove('no-scroll');
     }
-  }, [isModalOpen])
+  }, [isModalOpen]);
 
   return (
     <>
@@ -106,7 +110,7 @@ function App() {
         </div>
         <div className='user_cart_container'>
           <div>
-            <Link style={{textDecoration :'none', color:'black'}} to="/profil">
+            <Link style={{ textDecoration: 'none', color: 'black' }} to="/profil">
               <img className='logo_cart' src={cart} alt="Cart" />
               <span>{orderCount}</span>
             </Link>
@@ -142,7 +146,7 @@ function App() {
       </div>
       <Modal meal={selectedMeal} isOpen={isModalOpen} onClose={closeModal} onAddToCart={addToCart} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
