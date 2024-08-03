@@ -4,7 +4,23 @@ import cart from './../../assets/shopping-cart.png';
 import { Link } from 'react-router-dom';
 import './Cart_Login.css';
 import searchicon from './../../assets/search_icon.png'
+import OrderDetailsModal from '../OrderDetailsModal_Admin/OrderDetailsModal_Admin';
 
+interface Meal {
+    idCategory: number;
+    strCategory: string;
+    strCategoryThumb: string;
+    strCategoryDescription: string;
+    price?: number;
+    quantity?: number;
+}
+
+interface Order {
+    items: Meal[];
+    orderDate: string;
+    address: string;
+    totalPrice: number;
+}
 
 const Cart_Login = () => {
     const [cartItems, setCartItems] = useState<any[]>([]);
@@ -16,6 +32,8 @@ const Cart_Login = () => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const [address, setAddress] = useState('');
+
+    const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
     const [isAddressValid, setIsAddressValid] = useState(true);
 
@@ -104,6 +122,14 @@ const Cart_Login = () => {
         item.strCategory.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+
+    const handleDetailsClick = (order: Order) => {
+        setSelectedOrder(order);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedOrder(null);
+    };
     return (
         <>
             <div className='container_header'>
@@ -146,30 +172,32 @@ const Cart_Login = () => {
                 <div className="order_history">
                     {order.map((orderItem, orderIndex) => (
                         <div key={orderIndex} className="order_item">
-                            <div className="order_items">
-                                <div className='order_items_item'>
-                                    <div className='container_meal'>
-                                        <img width={50} src={logo} />
-                                    </div>
-                                    <div className='order_product_container'>
-                                        {orderItem.items.slice(0, 2).map((item: any, itemIndex: any) => (
-                                            <div key={itemIndex} className="order_product">
-                                                <p>{item.strCategory}
-                                                    {(orderItem.items.length > 2 || (orderItem.items.length === 2 && itemIndex === 0)) && (
-                                                        <span>,</span>
-                                                    )}
-                                                </p>
-                                            </div>
-                                        ))}
-                                        {orderItem.items.length > 2 && (
-                                            <p>...and {orderItem.items.length - 2} </p>
-                                        )}
+                            <button style={{ border: 'none', backgroundColor: 'transparent', cursor: 'pointer' }} onClick={() => handleDetailsClick(orderItem)}>
+                                <div className="order_items">
+                                    <div className='order_items_item'>
+                                        <div className='container_meal'>
+                                            <img width={50} src={logo} />
+                                        </div>
+                                        <div className='order_product_container'>
+                                            {orderItem.items.slice(0, 2).map((item: any, itemIndex: any) => (
+                                                <div key={itemIndex} className="order_product">
+                                                    <p>{item.strCategory}
+                                                        {(orderItem.items.length > 2 || (orderItem.items.length === 2 && itemIndex === 0)) && (
+                                                            <span>,</span>
+                                                        )}
+                                                    </p>
+                                                </div>
+                                            ))}
+                                            {orderItem.items.length > 2 && (
+                                                <p>...and {orderItem.items.length - 2} </p>
+                                            )}
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <p>Order Date: {orderItem.orderDate}</p>
-                            <p>Total: ${orderItem.totalPrice}</p>
+                                <p>Order Date: {orderItem.orderDate}</p>
+                                <p>Total: ${orderItem.totalPrice}</p>
+                            </button>
                         </div>
                     ))}
                 </div>
@@ -243,6 +271,9 @@ const Cart_Login = () => {
                     </div>
                 )}
             </div>
+            {selectedOrder && (
+                <OrderDetailsModal order={selectedOrder} onClose={handleCloseModal} />
+            )}
         </>
     );
 };
