@@ -4,52 +4,55 @@
     padding: 0;
     margin: 0;
   }
-  
+
   .container_1 {
-  background-image: url('assets/bcg.jpg');
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-image: url('assets/bcg-1.jpg');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
 
-}
+  }
 
-.logo_container-1 {
-  display: flex;
-  justify-content: center;
-  padding-top: 10rem;
-}
+  .logo_container-1 {
+    display: flex;
+    justify-content: center;
+    padding-top: 10rem;
+  }
 
-.logo_1 {
-  width: 200px;
-  border-radius: 50%;
-}
+  .logo_1 {
+    width: 200px;
+    border-radius: 50%;
+  }
 
-.container-2 {
-  display: flex;
-  justify-content: center;
-  padding-top: 5rem;
-}
+  .container-2 {
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+  }
 
-.get_started {
-  border: 1px solid red;
-  border: none;
-  padding: 2rem;
-  color: white;
-  background-color: red;
-  text-decoration: none;
-}
+  .get_started {
+    border: 1px solid red;
+    border: none;
+    padding: 2rem;
+    color: white;
+    background-color: darkblue;
+    text-decoration: none;
+    border-radius: 20px;
+    width: 200px;
+    text-align: center;
+  }
 
-.get_started:hover {
-  background-color: blue;
-}
+  .get_started:hover {
+    background-color: blue;
+  }
 
-.mealorder {
-  text-align: center;
-  font-size: 2rem;
-  padding-top: 5rem;
-  color: white;
-  font-family: "Playwrite AR", cursive;
-  font-optical-sizing: auto;
-  font-weight: 800;
-  font-style: normal;
-}
+  .mealorder {
+    text-align: center;
+    font-size: 3rem;
+    padding-top: 5rem;
+    color: white;
+    font-family: "Playwrite AR", cursive;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+  }
