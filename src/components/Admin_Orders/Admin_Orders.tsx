@@ -75,7 +75,7 @@ const Admin_Orders = () => {
                 <div className='user_cart_container'>
                     <div>
                         <Link style={{ textDecoration: 'none', color: 'black' }} to="/admin/adminorders">
-                            <img className='logo_cart' src={order} alt="order" />
+                            <img className='logo_cart_order' src={order} alt="order" />
                             <span>{orderCount}</span>
                         </Link>
                     </div>

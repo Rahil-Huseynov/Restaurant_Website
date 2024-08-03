@@ -145,7 +145,7 @@ function Profil_Login() {
         <div className='user_cart_container'>
           <div>
             <Link style={{ textDecoration: 'none', color: 'black' }} to="/cart_login">
-              <img className='logo_cart' src={cart} alt="Cart" />
+              <img className='logo_cart_login' src={cart} alt="Cart" />
               <span>{orderCount}</span>
             </Link>
           </div>

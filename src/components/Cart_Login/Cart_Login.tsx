@@ -136,7 +136,7 @@ const Cart_Login = () => {
                 <Link style={{ textDecoration: 'none', color: 'black' }} to='/profil_login'>
                     <div className='logo_container'>
                         <img className='logo' src={logo} alt="Logo" />
-                        <p className='logo_name'>MealOrder</p>
+                        <p className='logo_name_cart'>MealOrder</p>
                     </div>
                 </Link>
                 <div className='search_container'>
@@ -152,7 +152,7 @@ const Cart_Login = () => {
                 <div className='user_cart_container'>
                     <div>
                         <Link style={{ textDecoration: 'none', color: 'black' }} to="/cart_login">
-                            <img className='logo_cart' src={cart} alt="Cart" />
+                            <img className='logo_cart_login' src={cart} alt="Cart" />
                             <span>{orderCount}</span>
                         </Link>
                     </div>
@@ -219,12 +219,12 @@ const Cart_Login = () => {
                                         <p>Total: ${item.totalPrice}</p>
                                     </div>
                                     <div>
-                                        <button className='button-77' onClick={() => handleDelete(index)}>Delete</button>
+                                        <button className='button-24' onClick={() => handleDelete(index)}>Delete</button>
                                     </div>
                                 </div>
                             ))}
                         </div>
-                        <div>
+                        <div className='container_cart_buy_container'>
                             <div className='container_cart_buy'>
                                 <table>
                                     <thead>
