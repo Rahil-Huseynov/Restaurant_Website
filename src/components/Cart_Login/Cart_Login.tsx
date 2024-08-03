@@ -3,7 +3,7 @@ import logo from './../../assets/logo.png';
 import cart from './../../assets/shopping-cart.png';
 import { Link } from 'react-router-dom';
 import './Cart_Login.css';
-import searchicon from './../../assets/search_icon.png'
+import searchicon from './../../assets/search_icon.png';
 import OrderDetailsModal from '../OrderDetailsModal_Admin/OrderDetailsModal_Admin';
 
 interface Meal {
@@ -24,48 +24,32 @@ interface Order {
 
 const Cart_Login = () => {
     const [cartItems, setCartItems] = useState<any[]>([]);
-
     const [order, setOrder] = useState<any[]>([]);
-
     const [userName, setUserName] = useState('');
-
     const [searchQuery, setSearchQuery] = useState('');
-
     const [address, setAddress] = useState('');
-
     const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
-
     const [isAddressValid, setIsAddressValid] = useState(true);
-
-    const [orderCount, setorderCount] = useState<number>(0)
+    const [orderCount, setOrderCount] = useState<number>(0);
 
     useEffect(() => {
-        const counter = cartItems.filter(item => item).length
-        setorderCount(counter)
-    }, [cartItems])
-
+        const counter = cartItems.filter(item => item).length;
+        setOrderCount(counter);
+    }, [cartItems]);
 
     useEffect(() => {
         const savedCart = localStorage.getItem('cartItems');
-
         const savedOrders = localStorage.getItem('orders');
-
         const savedName = localStorage.getItem('name');
-
         if (savedCart) setCartItems(JSON.parse(savedCart));
-
         if (savedOrders) setOrder(JSON.parse(savedOrders));
-
         if (savedName) setUserName(savedName);
     }, []);
 
     const handleDelete = (index: number) => {
         const updatedCartItems = [...cartItems];
-
         updatedCartItems.splice(index, 1);
-
         setCartItems(updatedCartItems);
-
         localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
     };
 
@@ -73,55 +57,37 @@ const Cart_Login = () => {
 
     const handlePlaceOrder = () => {
         const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-
         if (!address.trim()) {
             setIsAddressValid(false);
             return;
         }
 
-
-        const today = new Date()
-
+        const today = new Date();
         const year = today.getFullYear();
-
         const month = String(today.getMonth() + 1).padStart(2, '0');
-
         const day = String(today.getDate()).padStart(2, '0');
-
         const hour = String(today.getHours()).padStart(2, '0');
-
         const minute = String(today.getMinutes()).padStart(2, '0');
-
         const nowdate = `${year}-${month}-${day} (${hour}:${minute})`;
 
         const newOrder = {
-
             items: cartItems,
-
             orderDate: nowdate,
-
             totalPrice,
-
             address,
         };
 
         const updatedOrders = [...orders, newOrder];
-
         localStorage.setItem('orders', JSON.stringify(updatedOrders));
-
         setCartItems([]);
-
         localStorage.removeItem('cartItems');
-
         setAddress('');
-
-        window.location.reload()
+        window.location.reload();
     };
 
     const filteredItems = cartItems.filter(item =>
         item.strCategory.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
 
     const handleDetailsClick = (order: Order) => {
         setSelectedOrder(order);
@@ -130,6 +96,7 @@ const Cart_Login = () => {
     const handleCloseModal = () => {
         setSelectedOrder(null);
     };
+
     return (
         <>
             <div className='container_header'>
@@ -152,8 +119,8 @@ const Cart_Login = () => {
                 <div className='user_cart_container'>
                     <div>
                         <Link style={{ textDecoration: 'none', color: 'black' }} to="/cart_login">
-                            <img className='logo_cart_login' src={cart} alt="Cart" />
-                            <span>{orderCount}</span>
+                            <img className='logo_cart_cart' src={cart} alt="Cart" />
+                            <span className='ordercount'>{orderCount}</span>
                         </Link>
                     </div>
                     <div className="dropdown">
@@ -224,6 +191,7 @@ const Cart_Login = () => {
                                 </div>
                             ))}
                         </div>
+                        <div>
                         <div className='container_cart_buy_container'>
                             <div className='container_cart_buy'>
                                 <table>
@@ -268,6 +236,7 @@ const Cart_Login = () => {
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 )}
             </div>

@@ -148,6 +148,13 @@
     width: 50px;
     border-radius: 50%;
   }
+  .ordercount{
+    font-size: 0.7rem;
+  }
+
+  .logo_cart_cart{
+    width: 20px;
+  }
 
   .logo_cart_login {
     width: 35px;
@@ -294,6 +301,13 @@
   body {
     background-image: radial-gradient(circle at center center, rgba(217, 217, 217, 0.05) 0%, rgba(217, 217, 217, 0.05) 15%, rgba(197, 197, 197, 0.05) 15%, rgba(197, 197, 197, 0.05) 34%, rgba(178, 178, 178, 0.05) 34%, rgba(178, 178, 178, 0.05) 51%, rgba(237, 237, 237, 0.05) 51%, rgba(237, 237, 237, 0.05) 75%, rgba(138, 138, 138, 0.05) 75%, rgba(138, 138, 138, 0.05) 89%, rgba(158, 158, 158, 0.05) 89%, rgba(158, 158, 158, 0.05) 100%), radial-gradient(circle at center center, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 100%);
     background-size: 42px 42px;
+  }
+  .ordercount{
+    font-size: 0.7rem;
+  }
+
+  .logo_cart_cart{
+    width: 20px;
   }
 
   .logo {
@@ -535,7 +549,13 @@
 
 }
 
+.ordercount_profil_login{
+  font-size: 1rem;
+}
 
+.logo_cart_login{
+  width: 50px;
+}
 @media (min-width:1440px) {
   body {
     background-image: radial-gradient(circle at center center, rgba(217, 217, 217, 0.05) 0%, rgba(217, 217, 217, 0.05) 15%, rgba(197, 197, 197, 0.05) 15%, rgba(197, 197, 197, 0.05) 34%, rgba(178, 178, 178, 0.05) 34%, rgba(178, 178, 178, 0.05) 51%, rgba(237, 237, 237, 0.05) 51%, rgba(237, 237, 237, 0.05) 75%, rgba(138, 138, 138, 0.05) 75%, rgba(138, 138, 138, 0.05) 89%, rgba(158, 158, 158, 0.05) 89%, rgba(158, 158, 158, 0.05) 100%), radial-gradient(circle at center center, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 100%);
@@ -545,6 +565,14 @@
   .logo {
     width: 50px;
     border-radius: 50%;
+  }
+
+  .ordercount_profil_login{
+    font-size: 1rem;
+  }
+
+  .logo_cart_login{
+    width: 50px;
   }
 
   .logo_cart_login {
@@ -691,7 +719,13 @@
     align-items: center;
     justify-content: space-around;
   }
+  .ordercount_profil_login{
+    font-size: 1rem;
+  }
 
+  .logo_cart_login{
+    width: 50px;
+  }
   .search {
     width: 300px;
     border-top: none;

@@ -81,7 +81,7 @@ const Admin_AddMeals_Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 <div className="edit_container">
                     <h2>Add New Meal</h2>
                     <div className="input_edit_container">
-                        <span>Name:</span>
+                        <span style={{paddingRight:'2.1rem'}}>Name:</span>
                         <input
                             className="input_edit"
                             type="text"

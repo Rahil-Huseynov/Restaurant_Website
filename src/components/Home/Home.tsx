@@ -4,8 +4,8 @@ import './Home.css';
 import user from './../../assets/user.png';
 import logo from './../../assets/logo.png';
 import cart from './../../assets/shopping-cart.png';
-import Modal_Login from '../Modal_Login/Modal_Login';
 import searchicon from './../../assets/search_icon.png';
+import Modal from '../Modal/Modal';
 
 interface Meal {
   idCategory: number;
@@ -174,7 +174,7 @@ function Home() {
           ))}
         </div>
       </div>
-      <Modal_Login meal={selectedMeal} isOpen={isModalOpen} onClose={closeModal} onAddToCart={addToCart} />
+      <Modal meal={selectedMeal} isOpen={isModalOpen} onClose={closeModal} onAddToCart={addToCart} />
     </>
   );
 }

@@ -126,12 +126,12 @@ function Profil_Login() {
   return (
     <>
       <div className='container_header'>
-        <Link style={{ textDecoration: 'none', color: 'black' }} to='/profil_login'>
+        <a style={{ textDecoration: 'none', color: 'black' }} href='/profil_login'>
           <div className='logo_container'>
             <img className='logo' src={logo} alt="Logo" />
             <p className='logo_name'>MealOrder</p>
           </div>
-        </Link>
+        </a>
         <div className='search_container'>
           <input
             className='search'
@@ -146,7 +146,7 @@ function Profil_Login() {
           <div>
             <Link style={{ textDecoration: 'none', color: 'black' }} to="/cart_login">
               <img className='logo_cart_login' src={cart} alt="Cart" />
-              <span>{orderCount}</span>
+              <span className='ordercount_profil_login'>{orderCount}</span>
             </Link>
           </div>
           <div className="dropdown">
