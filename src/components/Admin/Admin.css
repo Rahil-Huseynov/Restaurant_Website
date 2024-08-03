@@ -133,4 +133,5 @@
 .container_all_items{
   display: flex;
   justify-content: center;
-  }
+padding-bottom: 2rem;  
+}
