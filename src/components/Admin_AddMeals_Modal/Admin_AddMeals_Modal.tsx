@@ -15,6 +15,17 @@ interface ModalProps {
 }
 
 const Admin_AddMeals_Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
+
+    useEffect(() => {
+        setIsModalOpen(isOpen);
+        if (isOpen) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+    }, [isOpen]);
+
     const [newMeal, setNewMeal] = useState<Meal>({
         idCategory: 15,
         strCategory: '',
@@ -35,7 +46,7 @@ const Admin_AddMeals_Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         }
     }, [isOpen]);
 
-    if (!isOpen) return null;
+    if (!isModalOpen) return null;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;

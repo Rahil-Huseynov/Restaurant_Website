@@ -18,6 +18,13 @@ interface Meal {
   totalPrice?: number;
 }
 
+interface Order {
+  items: Meal[];
+  orderDate: string;
+  address: string;
+  totalPrice: number;
+}
+
 function Admin() {
   const storedData = localStorage.getItem('filteredData');
   const data: Meal[] = storedData ? JSON.parse(storedData) : [];
@@ -28,14 +35,15 @@ function Admin() {
   const [orderCount, setOrderCount] = useState<number>(0);
 
   useEffect(() => {
+    const storedOrders = localStorage.getItem('orders');
+    const ordersParsed: Order[] = storedOrders ? JSON.parse(storedOrders) : [];
+    setOrderCount(ordersParsed.length);
+  }, []);
+
+  useEffect(() => {
     document.body.classList.toggle('no-scroll', isModalOpen);
   }, [isModalOpen]);
 
-  useEffect(() => {
-    const cartItems = localStorage.getItem('cartItems');
-    const cartItemsParsed: Meal[] = cartItems ? JSON.parse(cartItems) : [];
-    setOrderCount(cartItemsParsed.reduce((count, item) => count + (item.quantity || 0), 0));
-  }, []);
 
   const addRandomPrices = (meals: Meal[]): Meal[] => {
     return meals.map(meal => ({
@@ -91,12 +99,12 @@ function Admin() {
   return (
     <>
       <div className='container_header'>
-        <Link style={{ textDecoration: 'none', color: 'black' }} to='/admin'>
+        <a style={{ textDecoration: 'none', color: 'black' }} href='/admin'>
           <div className='logo_container'>
             <img className='logo' src={logo} alt="Logo" />
             <p className='logo_name'>MealOrder</p>
           </div>
-        </Link>
+        </a>
         <div className='search_container'>
           <input
             className='search'
@@ -138,7 +146,7 @@ function Admin() {
             </div>
           ))}
           <div className='meal_items'>
-            <img width={200} src={add} alt="Add Meals" />
+            <img className='addmealicon' src={add} alt="Add Meals" />
             <h3>Add Meals</h3>
             <div className='button_container'>
               <button className='button-24' onClick={openAddModal}>Add Meals</button>

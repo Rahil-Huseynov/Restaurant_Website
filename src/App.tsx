@@ -34,13 +34,15 @@ function App() {
 
   return (
     <>
-      <div className='container_1'>
-        <div className='logo_container-1'>
-          <img className='logo_1' src={logo} />
-        </div>
-        <div className='mealorder'>Meal Order</div>
-        <div className='container-2'>
-          <Link className='get_started' to='home'>GET STARTED</Link>
+      <div className='container_app'>
+        <div className='container_1'>
+          <div className='logo_container-1'>
+            <img className='logo_1' src={logo} />
+          </div>
+          <div className='mealorder'>Meal Order</div>
+          <div className='container-2'>
+            <Link className='get_started' to='home'>GET STARTED</Link>
+          </div>
         </div>
       </div>
     </>

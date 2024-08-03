@@ -126,6 +126,7 @@ th, td {
   text-align: center;
   overflow: scroll;
   width: 100%;
+  padding-bottom: 1rem;
 }
 
 .order_items{
@@ -319,4 +320,8 @@ th, td {
 
 .invalid {
   border: 2px solid red;
+}
+
+.cart{
+  padding-bottom: 2rem;
 }
