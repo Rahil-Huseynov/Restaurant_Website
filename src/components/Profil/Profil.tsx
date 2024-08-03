@@ -111,7 +111,7 @@ const Profil = () => {
     return (
         <>
             <div className='container_header'>
-                <Link style={{ textDecoration: 'none', color: 'black' }} to='/'>
+                <Link style={{ textDecoration: 'none', color: 'black' }} to='/home'>
                     <div className='logo_container'>
                         <img className='logo' src={logo} alt="Logo" />
                         <p className='logo_name'>MealOrder</p>

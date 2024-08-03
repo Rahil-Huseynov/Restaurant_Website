@@ -117,43 +117,45 @@ function Admin() {
           <div className="dropdown">
             <p className="dropbtn">Hi, Admin</p>
             <div className="dropdown-content">
-              <Link to='/'>Log out</Link>
+              <Link to='/home'>Log out</Link>
             </div>
           </div>
         </div>
       </div>
       <hr />
-      <div className='meal_list'>
-        {filteredMeals.map((meal: Meal) => (
-          <div className='meal_items' key={meal.idCategory}>
-            <img width={200} src={meal.strCategoryThumb} alt={meal.strCategory} />
-            <h3>{meal.strCategory}</h3>
-            <div>
-              <p>Price: ${meal.price}</p>
+      <div className='container_all_items'>
+        <div className='meal_list'>
+          {filteredMeals.map((meal: Meal) => (
+            <div className='meal_items' key={meal.idCategory}>
+              <img width={200} src={meal.strCategoryThumb} alt={meal.strCategory} />
+              <h3>{meal.strCategory}</h3>
+              <div>
+                <p>Price: ${meal.price}</p>
+              </div>
+              <div className='button_container'>
+                <button className='button-24' onClick={() => openModal(meal)}>Edit</button>
+              </div>
             </div>
+          ))}
+          <div className='meal_items'>
+            <img width={200} src={add} alt="Add Meals" />
+            <h3>Add Meals</h3>
             <div className='button_container'>
-              <button className='button-24' onClick={() => openModal(meal)}>Edit</button>
+              <button className='button-24' onClick={openAddModal}>Add Meals</button>
             </div>
           </div>
-        ))}
-        <div className='meal_items'>
-          <img width={200} src={add} alt="Add Meals" />
-          <h3>Add Meals</h3>
-          <div className='button_container'>
-            <button className='button-24' onClick={openAddModal}>Add Meals</button>
-          </div>
+          <Admin_Modal
+            meal={selectedMeal}
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            onEditMeal={handleEditMeal}
+            onDeleteMeal={handleDeleteMeal}
+          />
+          <Admin_AddMeals_Modal
+            isOpen={addMeals}
+            onClose={closeAddModal}
+          />
         </div>
-        <Admin_Modal
-          meal={selectedMeal}
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          onEditMeal={handleEditMeal}
-          onDeleteMeal={handleDeleteMeal}
-        />
-        <Admin_AddMeals_Modal 
-          isOpen={addMeals}
-          onClose={closeAddModal}
-        />
       </div>
     </>
   );

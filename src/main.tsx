@@ -9,6 +9,7 @@ import Profil_Login from './components/Profil_Login/Profil_Login.tsx'
 import Cart_Login from './components/Cart_Login/Cart_Login.tsx'
 import Admin from './components/Admin/Admin.tsx'
 import Admin_Orders from './components/Admin_Orders/Admin_Orders.tsx'
+import Home from './components/Home/Home.tsx'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
   {
     path: 'admin/adminorders',
     element: <Admin_Orders />
+  }
+  ,
+  {
+    path: 'home',
+    element: <Home />
   }
 ])
 

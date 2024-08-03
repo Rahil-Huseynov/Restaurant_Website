@@ -133,7 +133,7 @@ const Cart_Login = () => {
                     <div className="dropdown">
                         <p className="dropbtn">Hi, {userName}!</p>
                         <div className="dropdown-content">
-                            <Link to='/'>Log out</Link>
+                            <Link to='/home'>Log out</Link>
                         </div>
                     </div>
                 </div>
