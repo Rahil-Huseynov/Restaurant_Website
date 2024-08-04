@@ -15,6 +15,7 @@ interface Order {
     orderDate: string;
     address: string;
     totalPrice: number;
+    phone:number;
 }
 
 interface OrderDetailsModalProps {
@@ -64,7 +65,10 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({ order, onClose })
                 <div className='address_modal_container'>
                     <p>Address: </p>
                     <p className='address_modal'>{order.address}</p>
-                    
+                </div>
+                <div className='address_modal_container'>
+                    <p>Phone: </p>
+                    <p className='address_modal'>{order.phone}</p>
                 </div>
                 <p>Total Price: ${order.totalPrice}</p>
             </div>

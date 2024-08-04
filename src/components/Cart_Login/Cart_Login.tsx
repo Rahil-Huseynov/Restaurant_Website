@@ -28,6 +28,7 @@ const Cart_Login = () => {
     const [userName, setUserName] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [address, setAddress] = useState('');
+    const [phone, setphone] = useState('')
     const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
     const [isAddressValid, setIsAddressValid] = useState(true);
     const [orderCount, setOrderCount] = useState<number>(0);
@@ -62,6 +63,10 @@ const Cart_Login = () => {
             return;
         }
 
+        if (!phone.trim()) {
+            setIsAddressValid(false);
+            return;
+        }
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -75,6 +80,7 @@ const Cart_Login = () => {
             orderDate: nowdate,
             totalPrice,
             address,
+            phone,
         };
 
         const updatedOrders = [...orders, newOrder];
@@ -192,51 +198,67 @@ const Cart_Login = () => {
                             ))}
                         </div>
                         <div>
-                        <div className='container_cart_buy_container'>
-                            <div className='container_cart_buy'>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <td>Meal</td>
-                                            <td>Price</td>
-                                            <td>Quantity</td>
-                                            <td>Total</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {filteredItems.map((item, index) => (
-                                            <tr key={index}>
-                                                <td>{item.strCategory}</td>
-                                                <td>{item.price}</td>
-                                                <td>{item.quantity}</td>
-                                                <td>{item.totalPrice}</td>
+                            <div className='container_cart_buy_container'>
+                                <div className='container_cart_buy'>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <td>Meal</td>
+                                                <td>Price</td>
+                                                <td>Quantity</td>
+                                                <td>Total</td>
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                                <div className='TotalPriceContainer'>
-                                    <p>Total Price: {totalPrice}</p>
-                                </div>
-                                <div className='address_container'>
-                                    <p className='address'>Your Address: </p>
-                                    <input
-                                        className={`address_input ${!isAddressValid ? 'invalid' : ''}`}
-                                        type="text"
-                                        placeholder='Your Address'
-                                        value={address}
-                                        onChange={(e) => {
-                                            setAddress(e.target.value);
-                                            setIsAddressValid(true);
-                                        }}
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <button className='button-79' onClick={handlePlaceOrder}>Place an order!</button>
+                                        </thead>
+                                        <tbody>
+                                            {filteredItems.map((item, index) => (
+                                                <tr key={index}>
+                                                    <td>{item.strCategory}</td>
+                                                    <td>{item.price}</td>
+                                                    <td>{item.quantity}</td>
+                                                    <td>{item.totalPrice}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                    <div className='TotalPriceContainer'>
+                                        <p>Total Price: {totalPrice}</p>
+                                    </div>
+                                    <div>
+                                        <div className='address_container'>
+                                            <p className='address'>Your Address: </p>
+                                            <input
+                                                className={`address_input ${!isAddressValid ? 'invalid' : ''}`}
+                                                type="text"
+                                                placeholder='Your Address'
+                                                value={address}
+                                                onChange={(e) => {
+                                                    setAddress(e.target.value);
+                                                    setIsAddressValid(true);
+                                                }}
+                                                required
+                                            />
+                                        </div>
+                                        <div className='phone_container'>
+                                            <p className='address'>Phone: </p>
+                                            <input
+                                                className={`address_input ${!isAddressValid ? 'invalid' : ''}`}
+                                                type="number"
+                                                placeholder='Phone'
+                                                value={phone}
+                                                onChange={(e) => {
+                                                    setphone(e.target.value);
+                                                    setIsAddressValid(true);
+                                                }}
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button className='button-79' onClick={handlePlaceOrder}>Place an order!</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 )}
             </div>

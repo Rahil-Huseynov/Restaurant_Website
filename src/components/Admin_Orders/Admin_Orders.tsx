@@ -20,6 +20,7 @@ interface Order {
     orderDate: string;
     address: string;
     totalPrice: number;
+    phone: number;
 }
 
 const Admin_Orders = () => {

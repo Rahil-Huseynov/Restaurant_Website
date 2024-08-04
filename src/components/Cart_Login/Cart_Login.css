@@ -126,11 +126,23 @@ td {
   gap: 2rem;
 }
 
+.phone_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 5rem;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .address_input {
   border-top: none;
   border-left: none;
   border-right: none;
-  width: 70%;
+  width: 50%;
   height: 20px;
   text-align: center;
 }
