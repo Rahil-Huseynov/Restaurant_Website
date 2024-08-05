@@ -107,7 +107,7 @@ function Admin() {
         </a>
         <div className='search_container'>
           <input
-            className='search'
+            className='search_admin'
             type="text"
             placeholder='Search'
             value={searchQuery}

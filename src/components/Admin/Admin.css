@@ -25,7 +25,7 @@
     justify-content: space-around;
   }
   
-  .search {
+  .search_admin {
     width: 300px;
     border-top: none;
     border-right: none;
@@ -170,8 +170,8 @@ padding-bottom: 2rem;
     justify-content: space-around;
   }
 
-  .search {
-    width: 100px;
+  .search_admin {
+    width: 50px;
     border-top: none;
     border-right: none;
     border-left: none;
@@ -331,8 +331,8 @@ padding-bottom: 2rem;
     justify-content: space-around;
   }
 
-  .search {
-    width: 300px;
+  .search_admin {
+    width: 100px;
     border-top: none;
     border-right: none;
     border-left: none;
@@ -472,7 +472,7 @@ padding-bottom: 2rem;
     justify-content: space-around;
   }
 
-  .search {
+  .search_admin {
     width: 300px;
     border-top: none;
     border-right: none;
@@ -603,7 +603,7 @@ padding-bottom: 2rem;
     justify-content: space-around;
   }
   
-  .search {
+  .search_admin {
     width: 300px;
     border-top: none;
     border-right: none;
@@ -732,7 +732,7 @@ padding-bottom: 2rem;
     justify-content: space-around;
   }
 
-  .search {
+  .search_admin {
     width: 300px;
     border-top: none;
     border-right: none;
@@ -855,7 +855,7 @@ padding-bottom: 2rem;
     justify-content: space-around;
   }
 
-  .search {
+  .search_admin {
     width: 300px;
     border-top: none;
     border-right: none;
