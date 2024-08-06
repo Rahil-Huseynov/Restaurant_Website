@@ -20,6 +20,8 @@ interface Order {
     orderDate: string;
     address: string;
     totalPrice: number;
+    userName:string;
+    phone: number;
 }
 
 const Cart_Login = () => {
@@ -81,6 +83,7 @@ const Cart_Login = () => {
             totalPrice,
             address,
             phone,
+            userName,
         };
 
         const updatedOrders = [...orders, newOrder];
