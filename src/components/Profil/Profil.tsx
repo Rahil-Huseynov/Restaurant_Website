@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import user from './../../assets/user.png';
 
 const Profil = () => {
+
     const [isSignUp, setIsSignUp] = useState<boolean>(true);
     const [email, setEmail] = useState<string>('');
     const [name, setName] = useState<string>('');
@@ -14,11 +15,15 @@ const Profil = () => {
     const [passwordError, setPasswordError] = useState<boolean>(false);
     const navigate = useNavigate();
 
-    const nameRegex = /^[A-ZÇƏĞİıJKLNMÖPRSŞTUÜVWXYZ][a-zçəğııjklnmoprşтуüvwxyz]+$/;
+    const nameRegex = /^[A-ZÇƏĞİıJKLNMÖPRSŞTUÜVWXYZa-zçəğııjklnmoprşтуüvwxyz]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
     const handleSignUp = () => {
+
+        setEmailError(false);
+        setNameError(false);
+        setPasswordError(false);
         if (!emailRegex.test(email)) {
             setEmailError(true);
             return;
@@ -27,9 +32,36 @@ const Profil = () => {
             setNameError(true);
             return;
         }
-
         if (!passwordRegex.test(password)) {
             setPasswordError(true);
+            return;
+        }
+
+        const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+        const isEmailExists = storedUsers.some((user: { email: string }) => user.email === email);
+        const isNameExists = storedUsers.some((user: { name: string }) => user.name === name);
+
+        if (isEmailExists) {
+            setEmailError(true);
+            const errorPanel = document.getElementById('errorPanel');
+            if (errorPanel) {
+                errorPanel.classList.add('active');
+                setTimeout(() => {
+                    errorPanel.classList.remove('active');
+                }, 2000);
+            }
+            return;
+        }
+
+        if (isNameExists) {
+            setNameError(true);
+            const errorPanel = document.getElementById('errorPanel');
+            if (errorPanel) {
+                errorPanel.classList.add('active');
+                setTimeout(() => {
+                    errorPanel.classList.remove('active');
+                }, 2000);
+            }
             return;
         }
 
@@ -39,7 +71,6 @@ const Profil = () => {
             password: password,
         };
 
-        const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
         storedUsers.push(newUser);
         localStorage.setItem('users', JSON.stringify(storedUsers));
 
@@ -50,21 +81,22 @@ const Profil = () => {
                 successPanel.classList.remove('active');
             }, 2000);
         }
-
         setTimeout(() => {
-            window.location.reload();
+            location.reload()
         }, 1000);
     };
 
     const handleLogin = () => {
+        setEmailError(false);
+        setPasswordError(false);
         const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
         const user = storedUsers.find(
             (u: { email: string; password: string }) => u.email === email && u.password === password,
         );
 
         if (user) {
+            localStorage.setItem('name', user.name);
             const successPanel = document.getElementById('successPanel');
-            localStorage.setItem('name', user.name)
             if (successPanel) {
                 successPanel.classList.add('active');
                 setTimeout(() => {
@@ -74,7 +106,8 @@ const Profil = () => {
             setTimeout(() => {
                 navigate('/profil_login');
             }, 1000);
-        } else if (email === 'admin' && password === 'admin') {
+        }
+        else if (email === 'admin' && password === 'admin') {
             const successPanel = document.getElementById('successPanel');
             if (successPanel) {
                 successPanel.classList.add('active');
@@ -85,7 +118,8 @@ const Profil = () => {
             setTimeout(() => {
                 navigate('/admin');
             }, 1000);
-        } else {
+        }
+        else {
             const errorPanel = document.getElementById('errorPanel');
             if (errorPanel) {
                 errorPanel.classList.add('active');
@@ -104,7 +138,6 @@ const Profil = () => {
         setPasswordError(false);
     };
 
-
     return (
         <>
             <div className='container_header'>
@@ -120,7 +153,7 @@ const Profil = () => {
                     </div>
                 </Link>
             </div>
-            <div className="checkpanel_container" id="checkpanel_container">
+            <div className="checkpanel_container">
                 <div className="panel panel1" id="successPanel">Success</div>
                 <div className="panel panel2" id="errorPanel">Error</div>
             </div>
