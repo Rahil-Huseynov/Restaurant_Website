@@ -10,42 +10,45 @@ const Profil = () => {
     const [name, setName] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [emailError, setEmailError] = useState<boolean>(false);
+    const [nameError, setNameError] = useState<boolean>(false);
     const [passwordError, setPasswordError] = useState<boolean>(false);
     const navigate = useNavigate();
 
+    const nameRegex = /^[A-ZÇƏĞİıJKLNMÖPRSŞTUÜVWXYZ][a-zçəğııjklnmoprşтуüvwxyz]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
     const handleSignUp = () => {
         if (!emailRegex.test(email)) {
-
             setEmailError(true);
-
+            return;
+        }
+        if (!nameRegex.test(name)) {
+            setNameError(true);
             return;
         }
 
         if (!passwordRegex.test(password)) {
-
             setPasswordError(true);
-
             return;
         }
 
-        localStorage.setItem('name', name);
+        const newUser = {
+            name: name,
+            email: email,
+            password: password,
+        };
 
-        localStorage.setItem('userEmail', email);
-
-        localStorage.setItem('userPassword', password);
+        const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+        storedUsers.push(newUser);
+        localStorage.setItem('users', JSON.stringify(storedUsers));
 
         const successPanel = document.getElementById('successPanel');
         if (successPanel) {
-
             successPanel.classList.add('active');
             setTimeout(() => {
                 successPanel.classList.remove('active');
             }, 2000);
-
         }
 
         setTimeout(() => {
@@ -54,13 +57,14 @@ const Profil = () => {
     };
 
     const handleLogin = () => {
-        const storedEmail = localStorage.getItem('userEmail');
+        const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+        const user = storedUsers.find(
+            (u: { email: string; password: string }) => u.email === email && u.password === password,
+        );
 
-        const storedPassword = localStorage.getItem('userPassword');
-
-        if (email === storedEmail && password === storedPassword) {
-
+        if (user) {
             const successPanel = document.getElementById('successPanel');
+            localStorage.setItem('name', user.name)
             if (successPanel) {
                 successPanel.classList.add('active');
                 setTimeout(() => {
@@ -70,9 +74,7 @@ const Profil = () => {
             setTimeout(() => {
                 navigate('/profil_login');
             }, 1000);
-        }
-
-        else if (email === 'admin' && password === 'admin') {
+        } else if (email === 'admin' && password === 'admin') {
             const successPanel = document.getElementById('successPanel');
             if (successPanel) {
                 successPanel.classList.add('active');
@@ -83,10 +85,8 @@ const Profil = () => {
             setTimeout(() => {
                 navigate('/admin');
             }, 1000);
-        }
-        else {
+        } else {
             const errorPanel = document.getElementById('errorPanel');
-
             if (errorPanel) {
                 errorPanel.classList.add('active');
                 setTimeout(() => {
@@ -94,19 +94,16 @@ const Profil = () => {
                 }, 2000);
             }
             setEmailError(true);
-
             setPasswordError(true);
-
         }
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         e.target.classList.remove('error');
-
         setEmailError(false);
-
         setPasswordError(false);
     };
+
 
     return (
         <>
@@ -141,7 +138,7 @@ const Profil = () => {
                         <div>
                             <label className='label_profil' htmlFor='chk' aria-hidden="true">Sign up</label>
                             <input
-                                className='input_profil'
+                                className={`input_profil ${nameError ? 'error' : ''}`}
                                 type="text"
                                 name="txt"
                                 placeholder="User name"
