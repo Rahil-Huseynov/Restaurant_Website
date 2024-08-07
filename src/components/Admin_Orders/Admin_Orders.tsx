@@ -20,11 +20,12 @@ interface Order {
     orderDate: string;
     address: string;
     totalPrice: number;
-    phone: number;
+    phone: string;
+    userName: string;
 }
 
 const Admin_Orders = () => {
-    const storedData = localStorage.getItem('orders');
+    const storedData = localStorage.getItem('AllOrderForAdmin');
     const data: Order[] = storedData ? JSON.parse(storedData) : [];
     const [orderCount, setOrderCount] = useState<number>(data.length);
     const [searchQuery, setSearchQuery] = useState<string>('');
@@ -37,7 +38,7 @@ const Admin_Orders = () => {
     );
 
     useEffect(() => {
-        const storedOrders = localStorage.getItem('orders');
+        const storedOrders = localStorage.getItem('AllOrderForAdmin');
         const ordersParsed: Order[] = storedOrders ? JSON.parse(storedOrders) : [];
         setOrderCount(ordersParsed.length);
     }, []);

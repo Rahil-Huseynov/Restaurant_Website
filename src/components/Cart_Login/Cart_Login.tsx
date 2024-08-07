@@ -13,6 +13,7 @@ interface Meal {
     strCategoryDescription: string;
     price?: number;
     quantity?: number;
+    totalPrice?: number;
 }
 
 interface Order {
@@ -20,55 +21,65 @@ interface Order {
     orderDate: string;
     address: string;
     totalPrice: number;
-    userName:string;
-    phone: number;
+    userName: string;
+    phone: string;
 }
 
 const Cart_Login = () => {
-    const [cartItems, setCartItems] = useState<any[]>([]);
-    const [order, setOrder] = useState<any[]>([]);
+    const [cartItems, setCartItems] = useState<Meal[]>([]);
+    const [order, setOrder] = useState<Order[]>([]);
     const [userName, setUserName] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [address, setAddress] = useState('');
-    const [phone, setphone] = useState('')
+    const [phone, setPhone] = useState('');
     const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
     const [isAddressValid, setIsAddressValid] = useState(true);
     const [orderCount, setOrderCount] = useState<number>(0);
 
     useEffect(() => {
-        const counter = cartItems.filter(item => item).length;
-        setOrderCount(counter);
-    }, [cartItems]);
+        const savedName = localStorage.getItem('name');
+        if (savedName) setUserName(savedName);
+
+        const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+        const userIndex = storedUsers.findIndex((user: { name: string }) => user.name === userName);
+        if (userIndex !== -1) {
+            const userCart = storedUsers[userIndex].cart || [];
+            setOrderCount(userCart.length);
+            setCartItems(userCart);
+            const userCartOrder = storedUsers[userIndex].cartOrder || [];
+            setOrder(userCartOrder)
+        }
+    }, [userName]);
 
     useEffect(() => {
         const savedCart = localStorage.getItem('cartItems');
         const savedOrders = localStorage.getItem('orders');
-        const savedName = localStorage.getItem('name');
         if (savedCart) setCartItems(JSON.parse(savedCart));
         if (savedOrders) setOrder(JSON.parse(savedOrders));
-        if (savedName) setUserName(savedName);
     }, []);
 
     const handleDelete = (index: number) => {
         const updatedCartItems = [...cartItems];
         updatedCartItems.splice(index, 1);
         setCartItems(updatedCartItems);
-        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+        const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+        const userIndex = storedUsers.findIndex((user: { name: string }) => user.name === userName);
+        if (userIndex !== -1) {
+            storedUsers[userIndex].cart = updatedCartItems;
+            localStorage.setItem('users', JSON.stringify(storedUsers));
+        }
+
+        setOrderCount(updatedCartItems.length);
     };
 
-    const totalPrice = cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
+    const totalPrice = cartItems.reduce((acc, item) => acc + (item.totalPrice || 0), 0);
 
     const handlePlaceOrder = () => {
-        const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-        if (!address.trim()) {
+        if (!address.trim() || !phone.trim()) {
             setIsAddressValid(false);
             return;
         }
 
-        if (!phone.trim()) {
-            setIsAddressValid(false);
-            return;
-        }
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -77,7 +88,7 @@ const Cart_Login = () => {
         const minute = String(today.getMinutes()).padStart(2, '0');
         const nowdate = `${year}-${month}-${day} (${hour}:${minute})`;
 
-        const newOrder = {
+        const newOrder: Order = {
             items: cartItems,
             orderDate: nowdate,
             totalPrice,
@@ -86,11 +97,21 @@ const Cart_Login = () => {
             userName,
         };
 
-        const updatedOrders = [...orders, newOrder];
-        localStorage.setItem('orders', JSON.stringify(updatedOrders));
+        const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+        const userIndex = storedUsers.findIndex((user: { name: string }) => user.name === userName);
+        if (userIndex !== -1) {
+            storedUsers[userIndex].cartOrder = [...storedUsers[userIndex].cartOrder, newOrder];
+            storedUsers[userIndex].cart = [];
+            localStorage.setItem('users', JSON.stringify(storedUsers));
+        }
+        const allOrders = JSON.parse(localStorage.getItem('AllOrderForAdmin') || '[]');
+        const updatedOrders = [...allOrders, newOrder];
+        localStorage.setItem('AllOrderForAdmin', JSON.stringify(updatedOrders));
+    
         setCartItems([]);
-        localStorage.removeItem('cartItems');
         setAddress('');
+        setPhone('');
+        setIsAddressValid(true);
         window.location.reload();
     };
 
@@ -105,7 +126,6 @@ const Cart_Login = () => {
     const handleCloseModal = () => {
         setSelectedOrder(null);
     };
-
     return (
         <>
             <div className='container_header'>
@@ -249,7 +269,7 @@ const Cart_Login = () => {
                                                 placeholder='Phone'
                                                 value={phone}
                                                 onChange={(e) => {
-                                                    setphone(e.target.value);
+                                                    setPhone(e.target.value);
                                                     setIsAddressValid(true);
                                                 }}
                                                 required

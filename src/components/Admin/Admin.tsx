@@ -44,6 +44,11 @@ function Admin() {
     document.body.classList.toggle('no-scroll', isModalOpen);
   }, [isModalOpen]);
 
+  useEffect(() => {
+    const storedOrders = localStorage.getItem('AllOrderForAdmin');
+    const ordersParsed: Order[] = storedOrders ? JSON.parse(storedOrders) : [];
+    setOrderCount(ordersParsed.length);
+}, []);
 
   const addRandomPrices = (meals: Meal[]): Meal[] => {
     return meals.map(meal => ({

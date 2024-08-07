@@ -13,6 +13,8 @@ const Profil = () => {
     const [emailError, setEmailError] = useState<boolean>(false);
     const [nameError, setNameError] = useState<boolean>(false);
     const [passwordError, setPasswordError] = useState<boolean>(false);
+    const [userorder] = useState([]);
+    const [usercart] = useState([]);
     const navigate = useNavigate();
 
     const nameRegex = /^[A-ZÇƏĞİıJKLNMÖPRSŞTUÜVWXYZa-zçəğııjklnmoprşтуüvwxyz]+$/;
@@ -69,6 +71,8 @@ const Profil = () => {
             name: name,
             email: email,
             password: password,
+            cartOrder: userorder,
+            cart: usercart 
         };
 
         storedUsers.push(newUser);

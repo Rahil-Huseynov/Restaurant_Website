@@ -15,7 +15,7 @@ interface Order {
     orderDate: string;
     address: string;
     totalPrice: number;
-    phone:number;
+    phone:string;
     userName:string;
 }
 

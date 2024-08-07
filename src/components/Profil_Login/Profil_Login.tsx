@@ -17,28 +17,14 @@ interface Meal {
 
 function Profil_Login() {
   const storedData = localStorage.getItem('filteredData');
-
   const data: Meal[] = storedData ? JSON.parse(storedData) : [];
-
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
   const [selectedMeal, setSelectedMeal] = useState<Meal | null>(null);
-
-  const [cartItems, setCartItems] = useState<Meal[]>(() => {
-
-    const savedCart = localStorage.getItem('cartItems');
-
-    return savedCart ? JSON.parse(savedCart) : [];
-
-  });
-
+  const [cartItems, setCartItems] = useState<Meal[]>([]);
   const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
-
   const [searchQuery, setSearchQuery] = useState<string>('');
-
   const [userName, setUserName] = useState<string>('');
-
-  const [orderCount, setorderCount] = useState<number>(0)
+  const [orderCount, setOrderCount] = useState<number>(0);
 
   useEffect(() => {
     if (isModalOpen) {
@@ -48,19 +34,33 @@ function Profil_Login() {
     }
   }, [isModalOpen]);
 
-
-  useEffect(() => {
-    const counter = cartItems.filter(item => item).length
-    setorderCount(counter)
-  }, [cartItems])
-
-
   useEffect(() => {
     const savedName = localStorage.getItem('name');
     if (savedName) {
       setUserName(savedName);
     }
   }, []);
+
+  useEffect(() => {
+    const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+    const userIndex = storedUsers.findIndex((user: { name: string }) => user.name === userName);
+    if (userIndex !== -1) {
+      const userCart = storedUsers[userIndex].cart || [];
+      setOrderCount(userCart.length);
+      setCartItems(userCart);
+    }
+  }, [userName]);
+
+  useEffect(() => {
+    if (userName) {
+      const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+      const userIndex = storedUsers.findIndex((user: { name: string }) => user.name === userName);
+      if (userIndex !== -1) {
+        storedUsers[userIndex].cart = cartItems;
+        localStorage.setItem('users', JSON.stringify(storedUsers));
+      }
+    }
+  }, [cartItems, userName]);
 
   const addRandomPrices = (meals: Meal[]): Meal[] => {
     return meals.map(meal => ({
@@ -88,8 +88,11 @@ function Profil_Login() {
   const addToCart = (meal: Meal, quantity: number) => {
     const existingMealIndex = cartItems.findIndex(item => item.idCategory === meal.idCategory);
 
-    if (existingMealIndex > -1) {
+    const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
 
+    const userIndex = storedUsers.findIndex((user: { name: string }) => user.name === userName);
+
+    if (existingMealIndex > -1) {
       const updatedCartItems = [...cartItems];
 
       const existingMeal = updatedCartItems[existingMealIndex];
@@ -102,8 +105,13 @@ function Profil_Login() {
 
       setCartItems(updatedCartItems);
 
-      localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+      if (userIndex !== -1) {
 
+        storedUsers[userIndex].cart = updatedCartItems;
+
+        localStorage.setItem('users', JSON.stringify(storedUsers));
+
+      }
     } else {
       const updatedMeal: Meal = { ...meal, quantity, totalPrice: meal.price! * quantity };
 
@@ -111,8 +119,15 @@ function Profil_Login() {
 
       setCartItems(updatedCart);
 
-      localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+      if (userIndex !== -1) {
+
+        storedUsers[userIndex].cart = updatedCart;
+
+        localStorage.setItem('users', JSON.stringify(storedUsers));
+
+      }
     }
+    location.reload()
   };
 
   const handleQuantityChange = (id: number, value: number) => {
@@ -122,6 +137,7 @@ function Profil_Login() {
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
+
 
   return (
     <>
