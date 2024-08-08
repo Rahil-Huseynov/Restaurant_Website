@@ -25,12 +25,22 @@
     justify-content: space-around;
   }
   
-  .search_admin {
-    width: 300px;
+  .search {
     border-top: none;
-    border-right: none;
     border-left: none;
-    text-align: center;
+    border-right: none;
+    width: 300px;
+    background: transparent;
+  }
+  
+  .search:focus {
+    outline: none;
+    text-align: left;
+  }
+  .search:focus::placeholder {
+    outline: none;
+    text-align: left;
+    color: transparent;
   }
   
   .logo_name {
