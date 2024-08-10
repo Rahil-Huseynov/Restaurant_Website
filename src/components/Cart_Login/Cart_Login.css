@@ -304,8 +304,8 @@ input::-webkit-inner-spin-button {
     font-family: "Playwrite AR", cursive;
     font-optical-sizing: auto;
     font-weight: 800;
+    font-size: 0.6rem;
     font-style: normal;
-    font-size: 1rem;
   }
 
   .container {
@@ -375,7 +375,9 @@ input::-webkit-inner-spin-button {
     width: 300px;
     text-align: center;
   }
-
+  .cart{
+    padding-bottom: 2rem;
+  }
   .container_cart_buy_container {
     display: flex;
     justify-content: center;
@@ -580,9 +582,9 @@ input::-webkit-inner-spin-button {
   .logo_name_cart {
     font-family: "Playwrite AR", cursive;
     font-optical-sizing: auto;
+    font-size: 0.6rem;
     font-weight: 800;
     font-style: normal;
-    font-size: 1rem;
   }
 
   .container {

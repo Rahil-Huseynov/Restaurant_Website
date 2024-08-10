@@ -174,7 +174,6 @@ body {
     font-family: "Playwrite AR", cursive;
     font-optical-sizing: auto;
     font-weight: 800;
-    font-size: 1rem;
     font-style: normal;
   }
   
@@ -295,7 +294,6 @@ body {
   
   .logo_name {
     font-family: "Playwrite AR", cursive;
-    font-size: 1rem;
     font-optical-sizing: auto;
     font-weight: 800;
     font-style: normal;
