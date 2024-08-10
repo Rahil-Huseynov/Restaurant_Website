@@ -25,6 +25,15 @@ interface Order {
   totalPrice: number;
 }
 
+interface User {
+  name: string;
+  email: string;
+  password: string;
+  cartOrder: Order[];
+  cart: any[];
+}
+
+
 function Admin() {
   const storedData = localStorage.getItem('filteredData');
   const data: Meal[] = storedData ? JSON.parse(storedData) : [];
@@ -32,22 +41,22 @@ function Admin() {
   const [addMeals, setAddMeals] = useState<boolean>(false);
   const [selectedMeal, setSelectedMeal] = useState<Meal | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [orderCount, setOrderCount] = useState<number>(0);
-
-  useEffect(() => {
-    const storedOrders = localStorage.getItem('orders');
-    const ordersParsed: Order[] = storedOrders ? JSON.parse(storedOrders) : [];
-    setOrderCount(ordersParsed.length);
-  }, []);
+  const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
     document.body.classList.toggle('no-scroll', isModalOpen);
   }, [isModalOpen]);
 
   useEffect(() => {
-    const storedOrders = localStorage.getItem('AllOrderForAdmin');
-    const ordersParsed: Order[] = storedOrders ? JSON.parse(storedOrders) : [];
-    setOrderCount(ordersParsed.length);
+    const storedUsers = localStorage.getItem('users');
+    const users: User[] = storedUsers ? JSON.parse(storedUsers) : [];
+    const userOrders = users.reduce((acc: Order[], user: User) => {
+        if (user.cartOrder) {
+            return [...acc, ...user.cartOrder];
+        }
+        return acc;
+    }, []);
+    setOrders(userOrders);
 }, []);
 
   const addRandomPrices = (meals: Meal[]): Meal[] => {
@@ -124,7 +133,7 @@ function Admin() {
           <div>
             <Link style={{ textDecoration: 'none', color: 'black' }} to="/admin/adminorders">
               <img className='logo_cart_admin' src={order} alt="order" />
-              <span className='ordercount_admin'>{orderCount}</span>
+              <span className='ordercount_admin'>{orders.length}</span>
             </Link>
           </div>
           <div className="dropdown">

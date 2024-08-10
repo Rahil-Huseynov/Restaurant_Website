@@ -103,11 +103,7 @@ const Cart_Login = () => {
             storedUsers[userIndex].cartOrder = [...storedUsers[userIndex].cartOrder, newOrder];
             storedUsers[userIndex].cart = [];
             localStorage.setItem('users', JSON.stringify(storedUsers));
-        }
-        const allOrders = JSON.parse(localStorage.getItem('AllOrderForAdmin') || '[]');
-        const updatedOrders = [...allOrders, newOrder];
-        localStorage.setItem('AllOrderForAdmin', JSON.stringify(updatedOrders));
-    
+        }    
         setCartItems([]);
         setAddress('');
         setPhone('');

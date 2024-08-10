@@ -16,6 +16,7 @@ interface Meal {
 }
 
 interface Order {
+    id: number;
     items: Meal[];
     orderDate: string;
     address: string;
@@ -24,24 +25,36 @@ interface Order {
     userName: string;
 }
 
+interface User {
+    name: string;
+    email: string;
+    password: string;
+    cartOrder: Order[];
+    cart: any[];
+}
+
 const Admin_Orders = () => {
-    const storedData = localStorage.getItem('AllOrderForAdmin');
-    const data: Order[] = storedData ? JSON.parse(storedData) : [];
-    const [orderCount, setOrderCount] = useState<number>(data.length);
+    const [orders, setOrders] = useState<Order[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
-    const filteredOrders = data.filter(order =>
+    useEffect(() => {
+        const storedUsers = localStorage.getItem('users');
+        const users: User[] = storedUsers ? JSON.parse(storedUsers) : [];
+        const userOrders = users.reduce((acc: Order[], user: User) => {
+            if (user.cartOrder) {
+                return [...acc, ...user.cartOrder];
+            }
+            return acc;
+        }, []);
+        setOrders(userOrders);
+    }, []);
+
+    const filteredOrders = orders.filter(order =>
         order.items.some(meal =>
             meal.strCategory.toLowerCase().includes(searchQuery.toLowerCase())
         )
     );
-
-    useEffect(() => {
-        const storedOrders = localStorage.getItem('AllOrderForAdmin');
-        const ordersParsed: Order[] = storedOrders ? JSON.parse(storedOrders) : [];
-        setOrderCount(ordersParsed.length);
-    }, []);
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(event.target.value);
@@ -78,7 +91,7 @@ const Admin_Orders = () => {
                     <div>
                         <Link style={{ textDecoration: 'none', color: 'black' }} to="/admin/adminorders">
                             <img className='logo_cart_order' src={order} alt="order" />
-                            <span>{orderCount}</span>
+                            <span>{orders.length}</span>
                         </Link>
                     </div>
                     <div className="dropdown">
@@ -96,11 +109,11 @@ const Admin_Orders = () => {
             </div>
             <div className='container_admin_orders'>
                 <div className="order_list">
-                    {filteredOrders.map((order, index) => (
-                        <div key={index} className="order_item">
+                    {filteredOrders.map((order, orderIndex) => (
+                        <div key={orderIndex} className="order_item">
                             <p>Order Date: {order.orderDate}</p>
-                            {order.items.slice(0, 1).map((meal, index) => (
-                                <div key={index} className="meal_item">
+                            {order.items.slice(0, 1).map((meal, mealIndex) => (
+                                <div key={mealIndex} className="meal_item">
                                     <img className='img' src={meal.strCategoryThumb} alt={meal.strCategory} />
                                     <div className="meal_details">
                                         <div className='moreitems'>
