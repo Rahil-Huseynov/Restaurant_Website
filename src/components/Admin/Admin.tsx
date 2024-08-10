@@ -132,7 +132,7 @@ function Admin() {
         <div className='user_cart_container'>
           <div>
             <Link style={{ textDecoration: 'none', color: 'black' }} to="/admin/adminorders">
-              <img className='logo_cart_admin' src={order} alt="order" />
+              <img className='logo_cart' src={order} alt="order" />
               <span className='ordercount_admin'>{orders.length}</span>
             </Link>
           </div>
