@@ -160,6 +160,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding: 1rem;
   }
   
   .search {
@@ -282,6 +283,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding: 1rem;
   }
   
   .search {

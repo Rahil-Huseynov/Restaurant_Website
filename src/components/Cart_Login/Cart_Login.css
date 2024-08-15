@@ -154,6 +154,7 @@ input::-webkit-inner-spin-button {
   overflow: scroll;
   width: 100%;
   padding-bottom: 1rem;
+  padding-left: 1rem;
 }
 
 .order_items {
@@ -645,7 +646,7 @@ input::-webkit-inner-spin-button {
   }
 
   .logo_cart_cart{
-    width: 20px;
+    width: 50px;
   }
 
 
