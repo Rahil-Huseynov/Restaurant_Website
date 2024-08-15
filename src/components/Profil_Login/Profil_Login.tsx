@@ -39,6 +39,28 @@ function Profil_Login() {
     if (savedName) {
       setUserName(savedName);
     }
+    const storedCartItems = localStorage.getItem('cartItems');
+    if (storedCartItems) {
+      const parsedCartItems = JSON.parse(storedCartItems);
+      setCartItems(parsedCartItems);
+
+      const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+
+      const userIndex = storedUsers.findIndex((user: { name: string }) => user.name === savedName);
+
+      if (userIndex !== -1) {
+        const userCart = storedUsers[userIndex].cart || [];
+
+        const updatedCart = [...userCart, ...parsedCartItems];
+
+        storedUsers[userIndex].cart = updatedCart;
+
+        localStorage.setItem('users', JSON.stringify(storedUsers));
+        localStorage.removeItem('cartItems');
+        setCartItems([]);
+      }
+    }
+
   }, []);
 
   useEffect(() => {
