@@ -1,6 +1,8 @@
 body {
-  background-image: radial-gradient(circle at center center, rgba(217, 217, 217, 0.05) 0%, rgba(217, 217, 217, 0.05) 15%, rgba(197, 197, 197, 0.05) 15%, rgba(197, 197, 197, 0.05) 34%, rgba(178, 178, 178, 0.05) 34%, rgba(178, 178, 178, 0.05) 51%, rgba(237, 237, 237, 0.05) 51%, rgba(237, 237, 237, 0.05) 75%, rgba(138, 138, 138, 0.05) 75%, rgba(138, 138, 138, 0.05) 89%, rgba(158, 158, 158, 0.05) 89%, rgba(158, 158, 158, 0.05) 100%), radial-gradient(circle at center center, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 100%);
+  background-image: url('../../assets/stacked-waves-haikei.svg');
   background-size: 42px 42px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .logo {
@@ -29,6 +31,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  height: 80px;
 }
 
 .search {
@@ -37,16 +40,26 @@ body {
   border-right: none;
   width: 300px;
   background: transparent;
+  color: white;
+}
+
+.search:focus {
+  border-bottom: 3px solid white;
 }
 
 .search:focus {
   outline: none;
   text-align: left;
 }
+
 .search:focus::placeholder {
   outline: none;
   text-align: left;
   color: transparent;
+}
+
+.all_home_item{
+  min-height: 100vh;
 }
 
 .logo_name {
@@ -80,41 +93,49 @@ body {
   gap: 2rem;
 }
 
-
-.button-24 {
-  background: #FF4742;
-  border: 1px solid #FF4742;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+.button-5 {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #fa6400;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #fff;
   cursor: pointer;
-  display: inline-block;
-  font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+  display: inline-flex;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
-  font-weight: 800;
-  line-height: 16px;
-  min-height: 40px;
-  outline: 0;
-  padding: 12px 14px;
-  text-align: center;
-  text-rendering: geometricprecision;
-  text-transform: none;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  vertical-align: middle;
+  vertical-align: baseline;
+  width: auto;
 }
 
-.button-24:hover,
-.button-24:active {
-  background-color: initial;
-  background-position: 0 0;
-  color: #FF4742;
+.button-5:hover,
+.button-5:focus {
+  background-color: #fb8332;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
-.button-24:active {
-  opacity: .5;
+.button-5:hover {
+  transform: translateY(-1px);
+}
+
+.button-5:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
 }
 
 .search_container {
@@ -130,39 +151,35 @@ body {
 
 
 @media (min-width:360px) {
-  body {
-    background-image: radial-gradient(circle at center center, rgba(217, 217, 217, 0.05) 0%, rgba(217, 217, 217, 0.05) 15%, rgba(197, 197, 197, 0.05) 15%, rgba(197, 197, 197, 0.05) 34%, rgba(178, 178, 178, 0.05) 34%, rgba(178, 178, 178, 0.05) 51%, rgba(237, 237, 237, 0.05) 51%, rgba(237, 237, 237, 0.05) 75%, rgba(138, 138, 138, 0.05) 75%, rgba(138, 138, 138, 0.05) 89%, rgba(158, 158, 158, 0.05) 89%, rgba(158, 158, 158, 0.05) 100%), radial-gradient(circle at center center, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 100%);
-    background-size: 42px 42px;
-  }
-  
+
+
   .logo {
     width: 30px;
     border-radius: 50%;
   }
-  
+
   .logo_cart {
     width: 20px;
   }
-  
+
   .user_cart_container {
     display: flex;
     gap: 1rem;
   }
-  
+
   .logo_container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .container_header {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 1rem;
   }
-  
+
   .search {
     width: 100px;
     border-top: none;
@@ -170,21 +187,21 @@ body {
     border-left: none;
     text-align: center;
   }
-  
+
   .logo_name {
     font-family: "Playwrite AR", cursive;
     font-optical-sizing: auto;
     font-weight: 800;
     font-style: normal;
   }
-  
+
   .meal_list {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 2rem;
-  
+
   }
-  
+
   .meal_items {
     display: grid;
     align-items: center;
@@ -194,49 +211,59 @@ body {
     width: 300px;
     border: 1px solid black;
     border-radius: 20px;
+    color:white
   }
-  
+
   .button_container {
     display: flex;
     justify-content: center;
     gap: 2rem;
   }
-  
-  
-  .button-24 {
-    background: #FF4742;
-    border: 1px solid #FF4742;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+
+
+  .button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #fa6400;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: #FFFFFF;
+    color: #fff;
     cursor: pointer;
-    display: inline-block;
-    font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+    display: inline-flex;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
-    font-weight: 800;
-    line-height: 16px;
-    min-height: 40px;
-    outline: 0;
-    padding: 12px 14px;
-    text-align: center;
-    text-rendering: geometricprecision;
-    text-transform: none;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    vertical-align: middle;
+    vertical-align: baseline;
+    width: auto;
   }
   
-  .button-24:hover,
-  .button-24:active {
-    background-color: initial;
-    background-position: 0 0;
-    color: #FF4742;
+  .button-5:hover,
+  .button-5:focus {
+    background-color: #fb8332;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
   
-  .button-24:active {
-    opacity: .5;
+  .button-5:hover {
+    transform: translateY(-1px);
+  }
+  
+  .button-5:active {
+    background-color: #c85000;
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
   }
   
   .search_container {
@@ -244,48 +271,43 @@ body {
     align-items: center;
     gap: .5rem;
   }
-  
+
   .container_all_container {
     display: flex;
     justify-content: center;
   }
-  
+
 }
 
 @media (min-width:768px) {
-  body {
-    background-image: radial-gradient(circle at center center, rgba(217, 217, 217, 0.05) 0%, rgba(217, 217, 217, 0.05) 15%, rgba(197, 197, 197, 0.05) 15%, rgba(197, 197, 197, 0.05) 34%, rgba(178, 178, 178, 0.05) 34%, rgba(178, 178, 178, 0.05) 51%, rgba(237, 237, 237, 0.05) 51%, rgba(237, 237, 237, 0.05) 75%, rgba(138, 138, 138, 0.05) 75%, rgba(138, 138, 138, 0.05) 89%, rgba(158, 158, 158, 0.05) 89%, rgba(158, 158, 158, 0.05) 100%), radial-gradient(circle at center center, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 100%);
-    background-size: 42px 42px;
-  }
-  
+
   .logo {
     width: 50px;
     border-radius: 50%;
   }
-  
+
   .logo_cart {
     width: 50px;
   }
-  
+
   .user_cart_container {
     display: flex;
     gap: 1rem;
   }
-  
+
   .logo_container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .container_header {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 1rem;
   }
-  
+
   .search {
     width: 300px;
     border-top: none;
@@ -293,21 +315,22 @@ body {
     border-left: none;
     text-align: center;
   }
-  
+
   .logo_name {
     font-family: "Playwrite AR", cursive;
     font-optical-sizing: auto;
     font-weight: 800;
     font-style: normal;
+    color:#fb8332;
   }
-  
+
   .meal_list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-  
+
   }
-  
+
   .meal_items {
     display: grid;
     align-items: center;
@@ -318,97 +341,102 @@ body {
     border: 1px solid black;
     border-radius: 20px;
   }
-  
+
   .button_container {
     display: flex;
     justify-content: center;
     gap: 2rem;
   }
-  
-  
-  .button-24 {
-    background: #FF4742;
-    border: 1px solid #FF4742;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+
+
+  .button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #fa6400;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: #FFFFFF;
+    color: #fff;
     cursor: pointer;
-    display: inline-block;
-    font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+    display: inline-flex;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
-    font-weight: 800;
-    line-height: 16px;
-    min-height: 40px;
-    outline: 0;
-    padding: 12px 14px;
-    text-align: center;
-    text-rendering: geometricprecision;
-    text-transform: none;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    vertical-align: middle;
+    vertical-align: baseline;
+    width: auto;
   }
   
-  .button-24:hover,
-  .button-24:active {
-    background-color: initial;
-    background-position: 0 0;
-    color: #FF4742;
+  .button-5:hover,
+  .button-5:focus {
+    background-color: #fb8332;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
   
-  .button-24:active {
-    opacity: .5;
+  .button-5:hover {
+    transform: translateY(-1px);
   }
   
-  .search_container {
+  .button-5:active {
+    background-color: #c85000;
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+  }
+    .search_container {
     display: flex;
     align-items: center;
     gap: .5rem;
   }
-  
+
   .container_all_container {
     display: flex;
     justify-content: center;
   }
- 
+
 }
 
 
 @media (min-width:1024px) {
-  body {
-    background-image: radial-gradient(circle at center center, rgba(217, 217, 217, 0.05) 0%, rgba(217, 217, 217, 0.05) 15%, rgba(197, 197, 197, 0.05) 15%, rgba(197, 197, 197, 0.05) 34%, rgba(178, 178, 178, 0.05) 34%, rgba(178, 178, 178, 0.05) 51%, rgba(237, 237, 237, 0.05) 51%, rgba(237, 237, 237, 0.05) 75%, rgba(138, 138, 138, 0.05) 75%, rgba(138, 138, 138, 0.05) 89%, rgba(158, 158, 158, 0.05) 89%, rgba(158, 158, 158, 0.05) 100%), radial-gradient(circle at center center, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 100%);
-    background-size: 42px 42px;
-  }
-  
+
+
   .logo {
     width: 50px;
     border-radius: 50%;
   }
-  
+
   .logo_cart {
     width: 50px;
   }
-  
+
   .user_cart_container {
     display: flex;
     gap: 1rem;
   }
-  
+
   .logo_container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .container_header {
     display: flex;
     align-items: center;
     justify-content: space-around;
   }
-  
+
   .search {
     width: 300px;
     border-top: none;
@@ -416,7 +444,7 @@ body {
     border-left: none;
     text-align: center;
   }
-  
+
   .logo_name {
     font-family: "Playwrite AR", cursive;
     font-optical-sizing: auto;
@@ -424,14 +452,14 @@ body {
     font-style: normal;
     font-size: 1.5rem;
   }
-  
+
   .meal_list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-  
+
   }
-  
+
   .meal_items {
     display: grid;
     align-items: center;
@@ -442,48 +470,57 @@ body {
     border: 1px solid black;
     border-radius: 20px;
   }
-  
+
   .button_container {
     display: flex;
     justify-content: center;
     gap: 2rem;
   }
-  
-  
-  .button-24 {
-    background: #FF4742;
-    border: 1px solid #FF4742;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+
+
+  .button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #fa6400;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: #FFFFFF;
+    color: #fff;
     cursor: pointer;
-    display: inline-block;
-    font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+    display: inline-flex;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
-    font-weight: 800;
-    line-height: 16px;
-    min-height: 40px;
-    outline: 0;
-    padding: 12px 14px;
-    text-align: center;
-    text-rendering: geometricprecision;
-    text-transform: none;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    vertical-align: middle;
+    vertical-align: baseline;
+    width: auto;
   }
   
-  .button-24:hover,
-  .button-24:active {
-    background-color: initial;
-    background-position: 0 0;
-    color: #FF4742;
+  .button-5:hover,
+  .button-5:focus {
+    background-color: #fb8332;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
   
-  .button-24:active {
-    opacity: .5;
+  .button-5:hover {
+    transform: translateY(-1px);
+  }
+  
+  .button-5:active {
+    background-color: #c85000;
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
   }
   
   .search_container {
@@ -491,47 +528,44 @@ body {
     align-items: center;
     gap: .5rem;
   }
-  
+
   .container_all_container {
     display: flex;
     justify-content: center;
   }
- 
+
 }
 
 @media (min-width:1240px) {
-  body {
-    background-image: radial-gradient(circle at center center, rgba(217, 217, 217, 0.05) 0%, rgba(217, 217, 217, 0.05) 15%, rgba(197, 197, 197, 0.05) 15%, rgba(197, 197, 197, 0.05) 34%, rgba(178, 178, 178, 0.05) 34%, rgba(178, 178, 178, 0.05) 51%, rgba(237, 237, 237, 0.05) 51%, rgba(237, 237, 237, 0.05) 75%, rgba(138, 138, 138, 0.05) 75%, rgba(138, 138, 138, 0.05) 89%, rgba(158, 158, 158, 0.05) 89%, rgba(158, 158, 158, 0.05) 100%), radial-gradient(circle at center center, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 100%);
-    background-size: 42px 42px;
-  }
-  
+
+
   .logo {
     width: 50px;
     border-radius: 50%;
   }
-  
+
   .logo_cart {
     width: 50px;
   }
-  
+
   .user_cart_container {
     display: flex;
     gap: 1rem;
   }
-  
+
   .logo_container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .container_header {
     display: flex;
     align-items: center;
     justify-content: space-around;
   }
-  
+
   .search {
     width: 300px;
     border-top: none;
@@ -539,7 +573,7 @@ body {
     border-left: none;
     text-align: center;
   }
-  
+
   .logo_name {
     font-family: "Playwrite AR", cursive;
     font-optical-sizing: auto;
@@ -548,14 +582,14 @@ body {
 
     font-style: normal;
   }
-  
+
   .meal_list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-  
+
   }
-  
+
   .meal_items {
     display: grid;
     align-items: center;
@@ -566,48 +600,57 @@ body {
     border: 1px solid black;
     border-radius: 20px;
   }
-  
+
   .button_container {
     display: flex;
     justify-content: center;
     gap: 2rem;
   }
-  
-  
-  .button-24 {
-    background: #FF4742;
-    border: 1px solid #FF4742;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+
+
+  .button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #fa6400;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: #FFFFFF;
+    color: #fff;
     cursor: pointer;
-    display: inline-block;
-    font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+    display: inline-flex;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
-    font-weight: 800;
-    line-height: 16px;
-    min-height: 40px;
-    outline: 0;
-    padding: 12px 14px;
-    text-align: center;
-    text-rendering: geometricprecision;
-    text-transform: none;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    vertical-align: middle;
+    vertical-align: baseline;
+    width: auto;
   }
   
-  .button-24:hover,
-  .button-24:active {
-    background-color: initial;
-    background-position: 0 0;
-    color: #FF4742;
+  .button-5:hover,
+  .button-5:focus {
+    background-color: #fb8332;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
   
-  .button-24:active {
-    opacity: .5;
+  .button-5:hover {
+    transform: translateY(-1px);
+  }
+  
+  .button-5:active {
+    background-color: #c85000;
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
   }
   
   .search_container {
@@ -615,7 +658,7 @@ body {
     align-items: center;
     gap: .5rem;
   }
-  
+
   .container_all_container {
     display: flex;
     justify-content: center;
@@ -623,38 +666,35 @@ body {
 }
 
 @media (min-width:1440px) {
-  body {
-    background-image: radial-gradient(circle at center center, rgba(217, 217, 217, 0.05) 0%, rgba(217, 217, 217, 0.05) 15%, rgba(197, 197, 197, 0.05) 15%, rgba(197, 197, 197, 0.05) 34%, rgba(178, 178, 178, 0.05) 34%, rgba(178, 178, 178, 0.05) 51%, rgba(237, 237, 237, 0.05) 51%, rgba(237, 237, 237, 0.05) 75%, rgba(138, 138, 138, 0.05) 75%, rgba(138, 138, 138, 0.05) 89%, rgba(158, 158, 158, 0.05) 89%, rgba(158, 158, 158, 0.05) 100%), radial-gradient(circle at center center, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 100%);
-    background-size: 42px 42px;
-  }
-  
+
+
   .logo {
     width: 50px;
     border-radius: 50%;
   }
-  
+
   .logo_cart {
     width: 50px;
   }
-  
+
   .user_cart_container {
     display: flex;
     gap: 1rem;
   }
-  
+
   .logo_container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .container_header {
     display: flex;
     align-items: center;
     justify-content: space-around;
   }
-  
+
   .search {
     width: 300px;
     border-top: none;
@@ -662,7 +702,7 @@ body {
     border-left: none;
     text-align: center;
   }
-  
+
   .logo_name {
     font-family: "Playwrite AR", cursive;
     font-optical-sizing: auto;
@@ -671,14 +711,14 @@ body {
 
     font-style: normal;
   }
-  
+
   .meal_list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-  
+
   }
-  
+
   .meal_items {
     display: grid;
     align-items: center;
@@ -689,48 +729,57 @@ body {
     border: 1px solid black;
     border-radius: 20px;
   }
-  
+
   .button_container {
     display: flex;
     justify-content: center;
     gap: 2rem;
   }
-  
-  
-  .button-24 {
-    background: #FF4742;
-    border: 1px solid #FF4742;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+
+
+  .button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #fa6400;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: #FFFFFF;
+    color: #fff;
     cursor: pointer;
-    display: inline-block;
-    font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+    display: inline-flex;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
-    font-weight: 800;
-    line-height: 16px;
-    min-height: 40px;
-    outline: 0;
-    padding: 12px 14px;
-    text-align: center;
-    text-rendering: geometricprecision;
-    text-transform: none;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    vertical-align: middle;
+    vertical-align: baseline;
+    width: auto;
   }
   
-  .button-24:hover,
-  .button-24:active {
-    background-color: initial;
-    background-position: 0 0;
-    color: #FF4742;
+  .button-5:hover,
+  .button-5:focus {
+    background-color: #fb8332;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
   
-  .button-24:active {
-    opacity: .5;
+  .button-5:hover {
+    transform: translateY(-1px);
+  }
+  
+  .button-5:active {
+    background-color: #c85000;
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
   }
   
   .search_container {
@@ -738,48 +787,45 @@ body {
     align-items: center;
     gap: .5rem;
   }
-  
+
   .container_all_container {
     display: flex;
     justify-content: center;
   }
- 
+
 }
 
 
 @media (min-width:1600px) {
-  body {
-    background-image: radial-gradient(circle at center center, rgba(217, 217, 217, 0.05) 0%, rgba(217, 217, 217, 0.05) 15%, rgba(197, 197, 197, 0.05) 15%, rgba(197, 197, 197, 0.05) 34%, rgba(178, 178, 178, 0.05) 34%, rgba(178, 178, 178, 0.05) 51%, rgba(237, 237, 237, 0.05) 51%, rgba(237, 237, 237, 0.05) 75%, rgba(138, 138, 138, 0.05) 75%, rgba(138, 138, 138, 0.05) 89%, rgba(158, 158, 158, 0.05) 89%, rgba(158, 158, 158, 0.05) 100%), radial-gradient(circle at center center, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 100%);
-    background-size: 42px 42px;
-  }
-  
+
+
   .logo {
     width: 50px;
     border-radius: 50%;
   }
-  
+
   .logo_cart {
     width: 50px;
   }
-  
+
   .user_cart_container {
     display: flex;
     gap: 1rem;
   }
-  
+
   .logo_container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .container_header {
     display: flex;
     align-items: center;
     justify-content: space-around;
   }
-  
+
   .search {
     width: 300px;
     border-top: none;
@@ -787,7 +833,7 @@ body {
     border-left: none;
     text-align: center;
   }
-  
+
   .logo_name {
     font-family: "Playwrite AR", cursive;
     font-optical-sizing: auto;
@@ -796,14 +842,14 @@ body {
     font-size: 1.5rem;
 
   }
-  
+
   .meal_list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
-  
+
   }
-  
+
   .meal_items {
     display: grid;
     align-items: center;
@@ -814,59 +860,78 @@ body {
     border: 1px solid black;
     border-radius: 20px;
   }
-  
+
   .button_container {
     display: flex;
     justify-content: center;
     gap: 2rem;
   }
-  
-  
-  .button-24 {
-    background: #FF4742;
-    border: 1px solid #FF4742;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+
+
+  .button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #fa6400;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: #FFFFFF;
+    color: #fff;
     cursor: pointer;
-    display: inline-block;
-    font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+    display: inline-flex;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
-    font-weight: 800;
-    line-height: 16px;
-    min-height: 40px;
-    outline: 0;
-    padding: 12px 14px;
-    text-align: center;
-    text-rendering: geometricprecision;
-    text-transform: none;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    vertical-align: middle;
+    vertical-align: baseline;
+    width: auto;
   }
   
-  .button-24:hover,
-  .button-24:active {
-    background-color: initial;
-    background-position: 0 0;
-    color: #FF4742;
+  .button-5:hover,
+  .button-5:focus {
+    background-color: #fb8332;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
   
-  .button-24:active {
-    opacity: .5;
+  .button-5:hover {
+    transform: translateY(-1px);
   }
   
+  .button-5:active {
+    background-color: #c85000;
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+  }
+
   .search_container {
     display: flex;
     align-items: center;
     gap: .5rem;
   }
-  
+
   .container_all_container {
     display: flex;
     justify-content: center;
   }
- 
+
+}
+
+.quantity_input{
+  width: 50px;
+  background-color: transparent;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  text-align: center;
+  color: white;
 }

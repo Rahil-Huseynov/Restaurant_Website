@@ -70,66 +70,68 @@ const Admin_Orders = () => {
 
     return (
         <>
-            <div className='container_header'>
-                <Link style={{ textDecoration: 'none', color: 'black' }} to='/admin'>
-                    <div className='logo_container'>
-                        <img className='logo' src={logo} alt="Logo" />
-                        <p className='logo_name'>MealOrder</p>
+            <div className='all_item_admin_orders'>
+                <div className='container_header'>
+                    <Link style={{ textDecoration: 'none', color: 'black' }} to='/admin'>
+                        <div className='logo_container'>
+                            <img className='logo' src={logo} alt="Logo" />
+                            <p className='logo_name'>MealOrder</p>
+                        </div>
+                    </Link>
+                    <div className='search_container'>
+                        <input
+                            className='search'
+                            type="text"
+                            placeholder='Search'
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                        />
+                        <img width={20} style={{ cursor: 'pointer' }} src={searchicon} alt="Search Icon" />
                     </div>
-                </Link>
-                <div className='search_container'>
-                    <input
-                        className='search'
-                        type="text"
-                        placeholder='Search'
-                        value={searchQuery}
-                        onChange={handleSearchChange}
-                    />
-                    <img width={20} style={{ cursor: 'pointer' }} src={searchicon} alt="Search Icon" />
-                </div>
-                <div className='user_cart_container'>
-                    <div>
-                        <Link style={{ textDecoration: 'none', color: 'black' }} to="/admin/adminorders">
-                            <img className='logo_cart' src={order} alt="order" />
-                            <span>{orders.length}</span>
-                        </Link>
-                    </div>
-                    <div className="dropdown">
-                        <p className="dropbtn">Hi, Admin</p>
-                        <div className="dropdown-content">
-                            <Link to='/home'>Log out</Link>
+                    <div className='user_cart_container'>
+                        <div>
+                            <Link style={{ textDecoration: 'none', color: 'black' }} to="/admin/adminorders">
+                                <img className='logo_cart' src={order} alt="order" />
+                                <span>{orders.length}</span>
+                            </Link>
+                        </div>
+                        <div className="dropdown">
+                            <p className="dropbtn">Hi, Admin</p>
+                            <div className="dropdown-content">
+                                <Link to='/home'>Log out</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <hr />
+                <hr />
 
-            <div className='orders'>
-                <p className='order'>Orders</p>
-            </div>
-            <div className='container_admin_orders'>
-                <div className="order_list">
-                    {filteredOrders.map((order, orderIndex) => (
-                        <div key={orderIndex} className="order_item">
-                            <p>Order Date: {order.orderDate}</p>
-                            {order.items.slice(0, 1).map((meal, mealIndex) => (
-                                <div key={mealIndex} className="meal_item">
-                                    <img className='img' src={meal.strCategoryThumb} alt={meal.strCategory} />
-                                    <div className="meal_details">
-                                        <div className='moreitems'>
-                                            <p>{meal.strCategory}</p>
-                                            {order.items.length > 1 && (
-                                                <span>and {order.items.length - 1} more items...</span>
-                                            )}
+                <div className='orders'>
+                    <p className='order'>Orders</p>
+                </div>
+                <div className='container_admin_orders'>
+                    <div className="order_list" style={{ color: 'white' }}>
+                        {filteredOrders.map((order, orderIndex) => (
+                            <div key={orderIndex} className="order_item">
+                                <p>Order Date: {order.orderDate}</p>
+                                {order.items.slice(0, 1).map((meal, mealIndex) => (
+                                    <div key={mealIndex} className="meal_item">
+                                        <img className='img' src={meal.strCategoryThumb} alt={meal.strCategory} />
+                                        <div className="meal_details">
+                                            <div className='moreitems'>
+                                                <p>{meal.strCategory}</p>
+                                                {order.items.length > 1 && (
+                                                    <span>and {order.items.length - 1} more items...</span>
+                                                )}
+                                            </div>
+                                            <p>Quantity: {meal.quantity}</p>
                                         </div>
-                                        <p>Quantity: {meal.quantity}</p>
                                     </div>
-                                </div>
-                            ))}
-                            <p>Total Price: ${order.totalPrice}</p>
-                            <button className='button-9' onClick={() => handleDetailsClick(order)}>Details</button>
-                        </div>
-                    ))}
+                                ))}
+                                <p>Total Price: ${order.totalPrice}</p>
+                                <button className='button-9' onClick={() => handleDetailsClick(order)}>Details</button>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 

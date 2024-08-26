@@ -1,80 +1,84 @@
 .logo {
-    width: 50px;
-    border-radius: 50%;
-  }
-  
-  .logo_cart_login{
-    width: 50px;
-  }
-  .user_cart_container{
-    display: flex;
-   align-items: center;
-    gap: 1rem ;
-  }
-  
-  .logo_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .container_header {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
-  
-  .search {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    width: 300px;
-    background: transparent;
-  }
-  
-  .search:focus {
-    outline: none;
-    text-align: left;
-  }
-  .search:focus::placeholder {
-    outline: none;
-    text-align: left;
-    color: transparent;
-  }
-  
-  .logo_name {
-    font-family: "Playwrite AR", cursive;
-    font-optical-sizing: auto;
-    font-weight: 800;
-    font-style: normal;
-  }
-  
-  .meal_list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-  
-  }
-  .meal_items{
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 1rem;
-    width: 300px;
-    border: 1px solid black;
-    border-radius: 20px;
-  }
-  .button_container{
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-  }
-  
+  width: 50px;
+  border-radius: 50%;
+}
 
-  .dropbtn {
-  color: black;
+.logo_cart_login {
+  width: 50px;
+}
+
+.user_cart_container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.search {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 300px;
+  background: transparent;
+}
+
+.search:focus {
+  outline: none;
+  text-align: left;
+}
+
+.search:focus::placeholder {
+  outline: none;
+  text-align: left;
+  color: transparent;
+}
+
+.logo_name {
+  font-family: "Playwrite AR", cursive;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.meal_list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+
+}
+
+.meal_items {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.button_container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+
+.dropbtn {
+  color: white;
   font-size: 16px;
   border: none;
 }
@@ -99,10 +103,14 @@
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
-  
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 
 .button-24 {
   background: #FF4742;
@@ -113,7 +121,7 @@
   color: #FFFFFF;
   cursor: pointer;
   display: inline-block;
-  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
   font-size: 16px;
   font-weight: 800;
   line-height: 16px;
@@ -140,15 +148,18 @@
   opacity: .5;
 }
 
-
-.container_all_items{
-  display: flex;
-  justify-content: center;
-padding-bottom: 2rem;  
+.all_item_admin{
+  min-height: 100vh;
 }
 
-.addmealicon{
- width: 200px;
+.container_all_items {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+
+.addmealicon {
+  width: 200px;
 }
 
 
@@ -222,7 +233,7 @@ padding-bottom: 2rem;
 
 
   .dropbtn {
-    color: black;
+    color: white;
     font-size: 16px;
     border: none;
   }
@@ -298,12 +309,12 @@ padding-bottom: 2rem;
     padding-bottom: 2rem;
   }
 
-  
-  .ordercount_admin{
+
+  .ordercount_admin {
     font-size: .7rem;
   }
-  
-  .logo_cart_admin{
+
+  .logo_cart_admin {
     width: 30px;
   }
 }
@@ -349,14 +360,15 @@ padding-bottom: 2rem;
     text-align: center;
   }
 
-  
-  .ordercount_admin{
+
+  .ordercount_admin {
     font-size: .7rem;
   }
-  
-  .logo_cart_admin{
+
+  .logo_cart_admin {
     width: 30px;
   }
+
   .logo_name {
     font-family: "Playwrite AR", cursive;
     font-optical-sizing: auto;
@@ -445,12 +457,12 @@ padding-bottom: 2rem;
     background-size: 42px 42px;
   }
 
-  
-  .ordercount_admin{
+
+  .ordercount_admin {
     font-size: 1rem;
   }
-  
-  .logo_cart_admin{
+
+  .logo_cart_admin {
     width: 50px;
   }
 
@@ -576,13 +588,13 @@ padding-bottom: 2rem;
     background-image: radial-gradient(circle at center center, rgba(217, 217, 217, 0.05) 0%, rgba(217, 217, 217, 0.05) 15%, rgba(197, 197, 197, 0.05) 15%, rgba(197, 197, 197, 0.05) 34%, rgba(178, 178, 178, 0.05) 34%, rgba(178, 178, 178, 0.05) 51%, rgba(237, 237, 237, 0.05) 51%, rgba(237, 237, 237, 0.05) 75%, rgba(138, 138, 138, 0.05) 75%, rgba(138, 138, 138, 0.05) 89%, rgba(158, 158, 158, 0.05) 89%, rgba(158, 158, 158, 0.05) 100%), radial-gradient(circle at center center, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 6%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 12%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 31%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 92%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 97%, rgb(255, 255, 255) 100%);
     background-size: 42px 42px;
   }
-  
-  
-  .ordercount_admin{
+
+
+  .ordercount_admin {
     font-size: 1rem;
   }
-  
-  .logo_cart_admin{
+
+  .logo_cart_admin {
     width: 50px;
   }
 
@@ -590,29 +602,29 @@ padding-bottom: 2rem;
     width: 50px;
     border-radius: 50%;
   }
-  
+
   .logo_cart {
     width: 50px;
   }
-  
+
   .user_cart_container {
     display: flex;
     gap: 1rem;
   }
-  
+
   .logo_container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .container_header {
     display: flex;
     align-items: center;
     justify-content: space-around;
   }
-  
+
   .search_admin {
     width: 300px;
     border-top: none;
@@ -620,21 +632,21 @@ padding-bottom: 2rem;
     border-left: none;
     text-align: center;
   }
-  
+
   .logo_name {
     font-family: "Playwrite AR", cursive;
     font-optical-sizing: auto;
     font-weight: 800;
     font-style: normal;
   }
-  
+
   .meal_list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-  
+
   }
-  
+
   .meal_items {
     display: grid;
     align-items: center;
@@ -645,14 +657,14 @@ padding-bottom: 2rem;
     border: 1px solid black;
     border-radius: 20px;
   }
-  
+
   .button_container {
     display: flex;
     justify-content: center;
     gap: 2rem;
   }
-  
-  
+
+
   .button-24 {
     background: #FF4742;
     border: 1px solid #FF4742;
@@ -677,24 +689,24 @@ padding-bottom: 2rem;
     touch-action: manipulation;
     vertical-align: middle;
   }
-  
+
   .button-24:hover,
   .button-24:active {
     background-color: initial;
     background-position: 0 0;
     color: #FF4742;
   }
-  
+
   .button-24:active {
     opacity: .5;
   }
-  
+
   .search_container {
     display: flex;
     align-items: center;
     gap: .5rem;
   }
-  
+
   .container_all_container {
     display: flex;
     justify-content: center;
@@ -707,11 +719,11 @@ padding-bottom: 2rem;
     background-size: 42px 42px;
   }
 
-  .ordercount_admin{
+  .ordercount_admin {
     font-size: 1rem;
   }
-  
-  .logo_cart_admin{
+
+  .logo_cart_admin {
     width: 50px;
   }
 
@@ -886,11 +898,12 @@ padding-bottom: 2rem;
     gap: 2rem;
 
   }
-  .ordercount_admin{
+
+  .ordercount_admin {
     font-size: 1rem;
   }
-  
-  .logo_cart_admin{
+
+  .logo_cart_admin {
     width: 50px;
   }
 

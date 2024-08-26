@@ -72,7 +72,7 @@ const Profil = () => {
             email: email,
             password: password,
             cartOrder: userorder,
-            cart: usercart 
+            cart: usercart
         };
 
         storedUsers.push(newUser);
@@ -144,84 +144,86 @@ const Profil = () => {
 
     return (
         <>
-            <div className='container_header'>
-                <Link style={{ textDecoration: 'none', color: 'black' }} to='/home'>
-                    <div className='logo_container'>
-                        <img className='logo' src={logo} alt="Logo" />
-                        <p className='logo_name'>MealOrder</p>
-                    </div>
-                </Link>
-                <Link to='/profil'>
-                    <div className='user_cart_container'>
-                        <img className='logo_cart' src={user} alt="User" />
-                    </div>
-                </Link>
-            </div>
-            <div className="checkpanel_container">
-                <div className="panel panel1" id="successPanel">Success</div>
-                <div className="panel panel2" id="errorPanel">Error</div>
-            </div>
-            <hr />
-            <div className='container_profil'>
-                <div className="main">
-                    <input
-                        type="checkbox"
-                        id="chk"
-                        aria-hidden="true"
-                        checked={!isSignUp}
-                        onChange={() => setIsSignUp(!isSignUp)}
-                    />
-                    <div className={`signup ${isSignUp ? 'active' : 'inactive'}`}>
-                        <div>
-                            <label className='label_profil' htmlFor='chk' aria-hidden="true">Sign up</label>
-                            <input
-                                className={`input_profil ${nameError ? 'error' : ''}`}
-                                type="text"
-                                name="txt"
-                                placeholder="User name"
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-                                onFocus={handleFocus}
-                            />
-                            <input
-                                className={`input_profil ${emailError ? 'error' : ''}`}
-                                type="email"
-                                name="email"
-                                placeholder="Email"
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                                onFocus={handleFocus}
-                            />
-                            <input
-                                className={`input_profil ${passwordError ? 'error' : ''}`}
-                                type="password"
-                                name="pswd"
-                                placeholder="Password"
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-                                onFocus={handleFocus}
-                            />
-                            <button className='singup_login_button' onClick={handleSignUp}>Sign up</button>
+            <div className='profil_all_item'>
+                <div className='container_header_profil'>
+                    <Link style={{ textDecoration: 'none', color: 'black' }} to='/home'>
+                        <div className='logo_container'>
+                            <img className='logo' src={logo} alt="Logo" />
+                            <p className='logo_name'>MealOrder</p>
                         </div>
-                    </div>
+                    </Link>
+                    <Link to='/profil'>
+                        <div className='user_cart_container'>
+                            <img className='logo_cart' src={user} alt="User" />
+                        </div>
+                    </Link>
+                </div>
+                <div className="checkpanel_container">
+                    <div className="panel panel1" id="successPanel">Success</div>
+                    <div className="panel panel2" id="errorPanel">Error</div>
+                </div>
+                <hr />
+                <div className='container_profil'>
+                    <div className="main">
+                        <input
+                            type="checkbox"
+                            id="chk"
+                            aria-hidden="true"
+                            checked={!isSignUp}
+                            onChange={() => setIsSignUp(!isSignUp)}
+                        />
+                        <div className={`signup ${isSignUp ? 'active' : 'inactive'}`}>
+                            <div>
+                                <label className='label_profil' htmlFor='chk' aria-hidden="true">Sign up</label>
+                                <input
+                                    className={`input_profil ${nameError ? 'error' : ''}`}
+                                    type="text"
+                                    name="txt"
+                                    placeholder="User name"
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+                                    onFocus={handleFocus}
+                                />
+                                <input
+                                    className={`input_profil ${emailError ? 'error' : ''}`}
+                                    type="email"
+                                    name="email"
+                                    placeholder="Email"
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                                    onFocus={handleFocus}
+                                />
+                                <input
+                                    className={`input_profil ${passwordError ? 'error' : ''}`}
+                                    type="password"
+                                    name="pswd"
+                                    placeholder="Password"
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                                    onFocus={handleFocus}
+                                />
+                                <button className='singup_login_button' onClick={handleSignUp}>Sign up</button>
+                            </div>
+                        </div>
 
-                    <div className={`login ${!isSignUp ? 'active' : 'inactive'}`}>
-                        <div>
-                            <label className='label_profil' htmlFor='chk' aria-hidden="true">Login</label>
-                            <input
-                                className={`input_profil ${!isSignUp && emailError ? 'error' : ''}`}
-                                type="email"
-                                name="email"
-                                placeholder="Email"
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                                onFocus={handleFocus}
-                            />
-                            <input
-                                className={`input_profil ${!isSignUp && passwordError ? 'error' : ''}`}
-                                type="password"
-                                name="pswd"
-                                placeholder="Password"
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-                                onFocus={handleFocus}
-                            />
-                            <button className='singup_login_button' onClick={handleLogin}>Login</button>
+                        <div className={`login ${!isSignUp ? 'active' : 'inactive'}`}>
+                            <div>
+                                <label className='label_profil' htmlFor='chk' aria-hidden="true">Login</label>
+                                <input
+                                    className={`input_profil ${!isSignUp && emailError ? 'error' : ''}`}
+                                    type="email"
+                                    name="email"
+                                    placeholder="Email"
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                                    onFocus={handleFocus}
+                                />
+                                <input
+                                    className={`input_profil ${!isSignUp && passwordError ? 'error' : ''}`}
+                                    type="password"
+                                    name="pswd"
+                                    placeholder="Password"
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                                    onFocus={handleFocus}
+                                />
+                                <button className='singup_login_button' onClick={handleLogin}>Login</button>
+                            </div>
                         </div>
                     </div>
                 </div>

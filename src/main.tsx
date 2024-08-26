@@ -10,6 +10,7 @@ import Cart_Login from './components/Cart_Login/Cart_Login.tsx'
 import Admin from './components/Admin/Admin.tsx'
 import Admin_Orders from './components/Admin_Orders/Admin_Orders.tsx'
 import Home from './components/Home/Home.tsx'
+import Cart from './components/Cart/Cart.tsx'
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: 'home',
     element: <Home />
+  },
+  {
+    path: 'cart',
+    element: <Cart />
   }
 ])
 

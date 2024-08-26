@@ -117,61 +117,62 @@ function Home() {
 
   return (
     <>
+      <div className='all_home_item'>
+        <div className='container_header'>
+          <a style={{ textDecoration: 'none', color: 'black' }} href="/home">
+            <div className='logo_container'>
+              <img className='logo' src={logo} alt="Logo" />
+              <p className='logo_name'>MealOrder</p>
+            </div>
+          </a>
 
-      <div className='container_header'>
-        <a style={{ textDecoration: 'none', color: 'black' }} href="/home">
-          <div className='logo_container'>
-            <img className='logo' src={logo} alt="Logo" />
-            <p className='logo_name'>MealOrder</p>
+          <div className='search_container'>
+            <input
+              className='search'
+              type="text"
+              placeholder='Search'
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+            <img width={20} style={{ cursor: 'pointer' }} src={searchicon} />
           </div>
-        </a>
-
-        <div className='search_container'>
-          <input
-            className='search'
-            type="text"
-            placeholder='Search'
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-          <img width={20} style={{ cursor: 'pointer' }} src={searchicon} />
-        </div>
-        <div className='user_cart_container'>
-          <div>
-            <Link style={{ textDecoration: 'none', color: 'black' }} to="/profil">
-              <img className='logo_cart' src={cart} alt="Cart" />
-              <span>{orderCount}</span>
+          <div className='user_cart_container'>
+            <div>
+              <Link style={{ textDecoration: 'none', color: 'black' }} to="/cart">
+                <img className='logo_cart' src={cart} alt="Cart" />
+                <span>{orderCount}</span>
+              </Link>
+            </div>
+            <Link to='/profil'>
+              <img className='logo_cart' src={user} alt="User" />
             </Link>
           </div>
-          <Link to='/profil'>
-            <img className='logo_cart' src={user} alt="User" />
-          </Link>
         </div>
-      </div>
-      <hr />
-      <div className='container_all_items'>
-        <div className='meal_list'>
-          {filteredMeals.map((meal: Meal) => (
-            <div className='meal_items' key={meal.idCategory}>
-              <img width={200} src={meal.strCategoryThumb} alt={meal.strCategory} />
-              <h3>{meal.strCategory}</h3>
-              <div>
-                <span>Quantity: </span>
-                <input
-                  type="number"
-                  min="1"
-                  value={quantities[meal.idCategory] || 1}
-                  onChange={(e) => handleQuantityChange(meal.idCategory, parseInt(e.target.value))}
-                  style={{ width: '50px' }}
-                />
-                <p>Price: ${meal.price}</p>
+        <hr />
+        <div className='container_all_items'>
+          <div className='meal_list'>
+            {filteredMeals.map((meal: Meal) => (
+              <div className='meal_items' key={meal.idCategory}>
+                <img width={200} src={meal.strCategoryThumb} alt={meal.strCategory} />
+                <h3>{meal.strCategory}</h3>
+                <div>
+                  <span>Quantity: </span>
+                  <input
+                    className='quantity_input'
+                    type="number"
+                    min="1"
+                    value={quantities[meal.idCategory] || 1}
+                    onChange={(e) => handleQuantityChange(meal.idCategory, parseInt(e.target.value))}
+                  />
+                  <p>Price: ${meal.price}</p>
+                </div>
+                <div className='button_container'>
+                  <Link className='button-5' style={{ textDecoration: 'none' }} to='/profil' onClick={() => addToCart(meal, quantities[meal.idCategory] || 1)}>Add to Cart</Link>
+                  <button className='button-5' onClick={() => openModal(meal)}>Detail</button>
+                </div>
               </div>
-              <div className='button_container'>
-                <Link className='button-24' style={{ textDecoration: 'none' }} to='/profil' onClick={() => addToCart(meal, quantities[meal.idCategory] || 1)}>Add to Cart</Link>
-                <button className='button-24' onClick={() => openModal(meal)}>Detail</button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
       <Modal meal={selectedMeal} isOpen={isModalOpen} onClose={closeModal} onAddToCart={addToCart} />

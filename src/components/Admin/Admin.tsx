@@ -51,13 +51,13 @@ function Admin() {
     const storedUsers = localStorage.getItem('users');
     const users: User[] = storedUsers ? JSON.parse(storedUsers) : [];
     const userOrders = users.reduce((acc: Order[], user: User) => {
-        if (user.cartOrder) {
-            return [...acc, ...user.cartOrder];
-        }
-        return acc;
+      if (user.cartOrder) {
+        return [...acc, ...user.cartOrder];
+      }
+      return acc;
     }, []);
     setOrders(userOrders);
-}, []);
+  }, []);
 
   const addRandomPrices = (meals: Meal[]): Meal[] => {
     return meals.map(meal => ({
@@ -112,60 +112,63 @@ function Admin() {
 
   return (
     <>
-      <div className='container_header'>
-        <a style={{ textDecoration: 'none', color: 'black' }} href='/admin'>
-          <div className='logo_container'>
-            <img className='logo' src={logo} alt="Logo" />
-            <p className='logo_name'>MealOrder</p>
+      <div className='all_item_admin'>
+        <div className='container_header'>
+          <a style={{ textDecoration: 'none', color: 'black' }} href='/admin'>
+            <div className='logo_container'>
+              <img className='logo' src={logo} alt="Logo" />
+              <p className='logo_name'>MealOrder</p>
+            </div>
+          </a>
+          <div className='search_container'>
+            <input
+              className='search'
+              type="text"
+              placeholder='Search'
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+            <img width={20} style={{ cursor: 'pointer' }} src={searchicon} alt="Search Icon" />
           </div>
-        </a>
-        <div className='search_container'>
-          <input
-            className='search_admin'
-            type="text"
-            placeholder='Search'
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-          <img width={20} style={{ cursor: 'pointer' }} src={searchicon} alt="Search Icon" />
-        </div>
-        <div className='user_cart_container'>
-          <div>
-            <Link style={{ textDecoration: 'none', color: 'black' }} to="/admin/adminorders">
-              <img className='logo_cart' src={order} alt="order" />
-              <span className='ordercount_admin'>{orders.length}</span>
-            </Link>
-          </div>
-          <div className="dropdown">
-            <p className="dropbtn">Hi, Admin</p>
-            <div className="dropdown-content">
-              <Link to='/home'>Log out</Link>
+          <div className='user_cart_container'>
+            <div>
+              <Link style={{ textDecoration: 'none', color: 'black' }} to="/admin/adminorders">
+                <img className='logo_cart' src={order} alt="order" />
+                <span className='ordercount_admin'>{orders.length}</span>
+              </Link>
+            </div>
+            <div className="dropdown">
+              <p className="dropbtn">Hi, Admin</p>
+              <div className="dropdown-content">
+                <Link to='/home'>Log out</Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <hr />
-      <div className='container_all_items'>
-        <div className='meal_list'>
-          {filteredMeals.map((meal: Meal) => (
-            <div className='meal_items' key={meal.idCategory}>
-              <img width={200} src={meal.strCategoryThumb} alt={meal.strCategory} />
-              <h3>{meal.strCategory}</h3>
-              <div>
-                <p>Price: ${meal.price}</p>
+        <hr />
+        <div className='container_all_items'>
+          <div className='meal_list'>
+            {filteredMeals.map((meal: Meal) => (
+              <div className='meal_items' key={meal.idCategory}>
+                <img width={200} src={meal.strCategoryThumb} alt={meal.strCategory} />
+                <h3>{meal.strCategory}</h3>
+                <div>
+                  <p>Price: ${meal.price}</p>
+                </div>
+                <div className='button_container'>
+                  <button className='button-24' onClick={() => openModal(meal)}>Edit</button>
+                </div>
               </div>
+            ))}
+            <div className='meal_items'>
+              <img className='addmealicon' src={add} alt="Add Meals" />
+              <h3>Add Meals</h3>
               <div className='button_container'>
-                <button className='button-24' onClick={() => openModal(meal)}>Edit</button>
+                <button className='button-24' onClick={openAddModal}>Add Meals</button>
               </div>
             </div>
-          ))}
-          <div className='meal_items'>
-            <img className='addmealicon' src={add} alt="Add Meals" />
-            <h3>Add Meals</h3>
-            <div className='button_container'>
-              <button className='button-24' onClick={openAddModal}>Add Meals</button>
-            </div>
           </div>
+
           <Admin_Modal
             meal={selectedMeal}
             isOpen={isModalOpen}

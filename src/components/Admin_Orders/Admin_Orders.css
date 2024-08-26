@@ -26,6 +26,10 @@
     width: 300px;
 }
 
+.all_item_admin_orders{
+    min-height: 100vh;
+}
+
 .container_admin_orders{
     display: flex;
     justify-content: center;
