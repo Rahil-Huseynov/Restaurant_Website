@@ -54,3 +54,50 @@
     font-weight: 800;
     font-style: normal;
   }
+
+  .logo_1 {
+    animation-name: animation;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+  }
+
+  .logo_1:hover {
+    transition: 0.9s;
+    transform: rotatez(360deg);
+  }
+
+  .mealorder {
+    animation-name: animation;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 1.5s;
+    animation-fill-mode: backwards;
+  }
+  .mealorder:hover{
+    transition: 0.9s;
+    transform: rotatex(360deg);
+  }
+
+  .get_started {
+    animation-name: animation;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 2s;
+    animation-fill-mode: backwards;
+  }
+
+  @keyframes animation {
+    from {
+      transform: translateY(1000px);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+
+  }
