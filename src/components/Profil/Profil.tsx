@@ -15,6 +15,7 @@ const Profil = () => {
     const [passwordError, setPasswordError] = useState<boolean>(false);
     const [userorder] = useState([]);
     const [usercart] = useState([]);
+    const [passwordStrength, setPasswordStrength] = useState<number>(0);
     const navigate = useNavigate();
 
     const nameRegex = /^[A-ZÇƏĞİıJKLNMÖPRSŞTUÜVWXYZa-zçəğııjklnmoprşтуüvwxyz]+$/;
@@ -22,10 +23,10 @@ const Profil = () => {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
     const handleSignUp = () => {
-
         setEmailError(false);
         setNameError(false);
         setPasswordError(false);
+
         if (!emailRegex.test(email)) {
             setEmailError(true);
             return;
@@ -86,7 +87,7 @@ const Profil = () => {
             }, 2000);
         }
         setTimeout(() => {
-            location.reload()
+            location.reload();
         }, 1000);
     };
 
@@ -142,6 +143,22 @@ const Profil = () => {
         setPasswordError(false);
     };
 
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setPassword(value);
+
+        let point = 0;
+        if (value.length >= 6) {
+            const arrayTest = [/[0-9]/, /[a-z]/, /[A-Z]/, /[^0-9a-zA-Z]/];
+            arrayTest.forEach((item) => {
+                if (item.test(value)) {
+                    point += 1;
+                }
+            });
+        }
+        setPasswordStrength(point);
+    };
+
     return (
         <>
             <div className='profil_all_item'>
@@ -192,13 +209,21 @@ const Profil = () => {
                                     onFocus={handleFocus}
                                 />
                                 <input
-                                    className={`input_profil ${passwordError ? 'error' : ''}`}
+                                    className={`input_profil input_profil_password ${passwordError ? 'error' : ''}`}
                                     type="password"
                                     name="pswd"
                                     placeholder="Password"
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                                    onChange={handlePasswordChange}
                                     onFocus={handleFocus}
                                 />
+                                <div className='container_checker_password'>
+                                    <div className="power-container">
+                                        <div id="power-point" style={{
+                                            width: ['1%', '25%', '50%', '75%', '100%'][passwordStrength],
+                                            backgroundColor: ['#D73F40', '#DC6551', '#F2B84F', '#BDE952', '#3ba62f'][passwordStrength]
+                                        }}></div>
+                                    </div>
+                                </div>
                                 <button className='singup_login_button' onClick={handleSignUp}>Sign up</button>
                             </div>
                         </div>
