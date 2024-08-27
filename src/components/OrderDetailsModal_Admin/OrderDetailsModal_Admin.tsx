@@ -16,6 +16,7 @@ interface Order {
     address: string;
     totalPrice: number;
     phone:string;
+    paymentMethod:string;
     userName:string;
 }
 
@@ -74,6 +75,10 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({ order, onClose })
                 <div className='address_modal_container'>
                     <p>Phone: </p>
                     <p className='address_modal'>{order.phone}</p>
+                </div>
+                <div className='address_modal_container'>
+                    <p>Payment Method: </p>
+                    <p className='address_modal'>{order.paymentMethod}</p>
                 </div>
                 <p>Total Price: ${order.totalPrice}</p>
             </div>

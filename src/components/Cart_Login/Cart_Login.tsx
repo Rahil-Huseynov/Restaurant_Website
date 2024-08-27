@@ -22,6 +22,7 @@ interface Order {
     orderDate: string;
     address: string;
     totalPrice: number;
+    paymentMethod: string;
     userName: string;
     phone: string;
 }
@@ -100,6 +101,7 @@ const Cart_Login = () => {
             items: cartItems,
             orderDate: nowdate,
             totalPrice,
+            paymentMethod,
             address,
             phone,
             userName,
@@ -129,11 +131,6 @@ const Cart_Login = () => {
     };
     const handlePaymentMethodChange = (method: string) => {
         setPaymentMethod(method);
-        if (method === 'card') {
-            setShowPayMethod(true);
-        } else {
-            setShowPayMethod(false);
-        }
     };
 
     const handleCloseModal = () => {
@@ -293,13 +290,11 @@ const Cart_Login = () => {
                                             </div>
                                             <div className='container_pay_method'>
                                                 <div className="wrapper">
-                                                    <input type="radio" id="option-1" name='pay'
-                                                        onClick={() => setShowPayMethod(false)}
-                                                        onChange={() => handlePaymentMethodChange('cash')}
+                                                    <input type="radio" id="option-1" name='pay' value='cash'
+                                                        onChange={(e) => handlePaymentMethodChange(e.target.value)}
                                                     />
-                                                    <input type="radio" id="option-2" name='pay'
-                                                        onClick={() => setShowPayMethod(true)}
-                                                        onChange={() => handlePaymentMethodChange('card')}
+                                                    <input type="radio" id="option-2" name='pay' value='card'
+                                                        onChange={(e) => handlePaymentMethodChange(e.target.value)}
                                                     />
                                                     <label htmlFor="option-1" className="option option-1">
                                                         <div className="dot"></div>
@@ -313,7 +308,18 @@ const Cart_Login = () => {
                                             </div>
                                         </div>
                                         <div className='button_cart_container'>
-                                            <button className='button-79' onClick={handlePlaceOrder}>Place an order!</button>
+                                            <button
+                                                className='button-79'
+                                                onClick={() => {
+                                                    if (paymentMethod === 'card') {
+                                                        setShowPayMethod(true);
+                                                    } else if (paymentMethod === 'cash') {
+                                                        handlePlaceOrder();
+                                                    }
+                                                }}
+                                            >
+                                                Place an order!
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -321,15 +327,18 @@ const Cart_Login = () => {
                         </div>
                     )}
                 </div>
-            </div>
+            </div >
             {selectedOrder && (
                 <OrderDetailsModal order={selectedOrder} onClose={handleCloseModal} />
-            )}
-            {showPayMethod && (
-                <div className="paymethod-modal">
-                    {showPayMethod && <PayMethod onClose={() => setShowPayMethod(false)} />}
-                </div>
-            )}
+            )
+            }
+            {
+                showPayMethod && (
+                    <div className="paymethod-modal">
+                        {showPayMethod && <PayMethod onClose={() => setShowPayMethod(false)} onPay={handlePlaceOrder} />}
+                    </div>
+                )
+            }
         </>
     );
 };

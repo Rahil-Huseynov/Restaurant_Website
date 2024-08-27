@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import './Cart.css';
 import searchicon from './../../assets/search_icon.png';
 import OrderDetailsModal from '../OrderDetailsModal_Admin/OrderDetailsModal_Admin';
-import PayMethod from '../PayMethod/PayMethod';
 
 interface Meal {
     idCategory: number;
@@ -25,6 +24,7 @@ interface Order {
     totalPrice: number;
     userName: string;
     phone: string;
+    paymentMethod:string;
 }
 
 const Cart = () => {
@@ -35,7 +35,6 @@ const Cart = () => {
     const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
     const [isAddressValid, setIsAddressValid] = useState(true);
     const [orderCount, setOrderCount] = useState<number>(0);
-    const [showPayMethod, setShowPayMethod] = useState(false);
 
 
     useEffect(() => {
@@ -185,12 +184,8 @@ const Cart = () => {
                                             </div>
                                             <div className='container_pay_method'>
                                                 <div className="wrapper">
-                                                    <input type="radio" id="option-1" name='pay'
-                                                        onClick={() => setShowPayMethod(false)}
-                                                    />
-                                                    <input type="radio" id="option-2" name='pay'
-                                                        onClick={() => setShowPayMethod(true)}
-                                                    />
+                                                    <input type="radio" id="option-1" name='pay' />
+                                                    <input type="radio" id="option-2" name='pay' />
                                                     <label htmlFor="option-1" className="option option-1">
                                                         <div className="dot"></div>
                                                         <span>Pay To Cash</span>
@@ -214,11 +209,6 @@ const Cart = () => {
             </div>
             {selectedOrder && (
                 <OrderDetailsModal order={selectedOrder} onClose={handleCloseModal} />
-            )}
-            {showPayMethod && (
-                <div className="paymethod-modal">
-                    {showPayMethod && <PayMethod onClose={() => setShowPayMethod(false)} />}
-                </div>
             )}
         </>
     );

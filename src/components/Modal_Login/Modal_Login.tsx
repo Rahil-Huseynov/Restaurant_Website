@@ -27,7 +27,9 @@ const Modal_Login: React.FC<ModalProps> = ({ meal, isOpen, onClose, onAddToCart 
             <div className="modal_content">
                 <span className="close" onClick={onClose}>&times;</span>
                 <h2>{meal.strCategory}</h2>
-                <img src={meal.strCategoryThumb} alt={meal.strCategory} />
+                <div className='edit_meal_img_container'>
+                    <img className='edit_meal_img' src={meal.strCategoryThumb} alt={meal.strCategory} />
+                </div>
                 <p>{meal.strCategoryDescription}</p>
                 <p>Price: ${meal.price}</p>
                 <div className='quantity_container'>

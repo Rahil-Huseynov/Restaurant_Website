@@ -3,9 +3,10 @@ import './PayMethod.css';
 
 interface PayMethodProps {
     onClose: () => void;
+    onPay: () => void;
 }
 
-const PayMethod: React.FC<PayMethodProps> = ({ onClose }) => {
+const PayMethod: React.FC<PayMethodProps> = ({ onClose, onPay }) => {
     return (
         <>
             <div className="demo">
@@ -88,7 +89,7 @@ const PayMethod: React.FC<PayMethodProps> = ({ onClose }) => {
                         </div>
                     </div>
                     <div className="payment-card__footer">
-                        <button onClick={onClose} className="payment-card__button">Pay To Card</button>
+                        <button type='submit' onClick={onPay} className="payment-card__button">Pay To Card</button>
                     </div>
                 </form>
             </div>
