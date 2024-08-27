@@ -179,37 +179,39 @@ const Cart_Login = () => {
                 {order.length === 0 ? (
                     <p style={{ textAlign: 'center', color: 'white' }}>No orders found.</p>
                 ) : (
-                    <div className="order_history">
-                        {order.map((orderItem, orderIndex) => (
-                            <div key={orderIndex} className="order_item">
-                                <button style={{ border: 'none', backgroundColor: 'transparent', cursor: 'pointer' }} onClick={() => handleDetailsClick(orderItem)}>
-                                    <div className="order_items">
-                                        <div className='order_items_item' style={{ color: 'white' }}>
-                                            <div className='container_meal'>
-                                                <img width={50} src={logo} />
-                                            </div>
-                                            <div className='order_product_container' style={{ color: 'white' }}>
-                                                {orderItem.items.slice(0, 2).map((item: any, itemIndex: any) => (
-                                                    <div key={itemIndex} className="order_product" >
-                                                        <p>{item.strCategory}
-                                                            {(orderItem.items.length > 2 || (orderItem.items.length === 2 && itemIndex === 0)) && (
-                                                                <span>,</span>
-                                                            )}
-                                                        </p>
-                                                    </div>
-                                                ))}
-                                                {orderItem.items.length > 2 && (
-                                                    <p>...and {orderItem.items.length - 2} </p>
-                                                )}
+                    <div className='order_history_container'>
+                        <div className="order_history">
+                            {order.map((orderItem, orderIndex) => (
+                                <div key={orderIndex} className="order_item">
+                                    <button style={{ border: 'none', backgroundColor: 'transparent', cursor: 'pointer' }} onClick={() => handleDetailsClick(orderItem)}>
+                                        <div className="order_items">
+                                            <div className='order_items_item' style={{ color: 'white' }}>
+                                                <div className='container_meal'>
+                                                    <img width={50} src={logo} />
+                                                </div>
+                                                <div className='order_product_container' style={{ color: 'white' }}>
+                                                    {orderItem.items.slice(0, 2).map((item: any, itemIndex: any) => (
+                                                        <div key={itemIndex} className="order_product" >
+                                                            <p>{item.strCategory}
+                                                                {(orderItem.items.length > 2 || (orderItem.items.length === 2 && itemIndex === 0)) && (
+                                                                    <span>,</span>
+                                                                )}
+                                                            </p>
+                                                        </div>
+                                                    ))}
+                                                    {orderItem.items.length > 2 && (
+                                                        <p>...and {orderItem.items.length - 2} </p>
+                                                    )}
 
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <p style={{ color: 'white' }}>Order Date: {orderItem.orderDate}</p>
-                                    <p style={{ color: 'white' }}>Total: ${orderItem.totalPrice}</p>
-                                </button>
-                            </div>
-                        ))}
+                                        <p style={{ color: 'white' }}>Order Date: {orderItem.orderDate}</p>
+                                        <p style={{ color: 'white' }}>Total: ${orderItem.totalPrice}</p>
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 )}
                 <div className="cart">

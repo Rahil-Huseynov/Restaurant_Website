@@ -88,7 +88,7 @@ const PayMethod: React.FC<PayMethodProps> = ({ onClose }) => {
                         </div>
                     </div>
                     <div className="payment-card__footer">
-                        <button onClick={onClose} className="payment-card__button">Send</button>
+                        <button onClick={onClose} className="payment-card__button">Pay To Card</button>
                     </div>
                 </form>
             </div>

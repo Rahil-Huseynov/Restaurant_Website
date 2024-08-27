@@ -379,6 +379,10 @@ input::-webkit-inner-spin-button {
 .all_item_cart_login{
   min-height: 100vh;
 }
+.order_history_container{
+  display: flex;
+  justify-content: center;
+}
 .button-24 {
   background: #FF4742;
   border: 1px solid #FF4742;
