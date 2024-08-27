@@ -184,26 +184,22 @@ const Cart = () => {
                                                 />
                                             </div>
                                             <div className='container_pay_method'>
-                                                <div className="checkbox-wrapper-13">
-                                                    <input
-                                                        id="c1-13-cash"
-                                                        type="radio"
-                                                        name='pay'
+                                                <div className="wrapper">
+                                                    <input type="radio" id="option-1" name='pay'
                                                         onClick={() => setShowPayMethod(false)}
                                                     />
-                                                    <label htmlFor="c1-13-cash">Pay To Cash</label>
-                                                </div>
-
-                                                <div className="checkbox-wrapper-13">
-                                                    <input
-                                                        id="c1-13-card"
-                                                        type="radio"
-                                                        name='pay'
+                                                    <input type="radio" id="option-2" name='pay'
                                                         onClick={() => setShowPayMethod(true)}
                                                     />
-                                                    <label htmlFor="c1-13-card">Pay to Card</label>
+                                                    <label htmlFor="option-1" className="option option-1">
+                                                        <div className="dot"></div>
+                                                        <span>Pay To Cash</span>
+                                                    </label>
+                                                    <label htmlFor="option-2" className="option option-2">
+                                                        <div className="dot"></div>
+                                                        <span>Pay to Card</span>
+                                                    </label>
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div className='button_cart_container'>
