@@ -54,7 +54,9 @@ const Admin_Modal: React.FC<ModalProps> = ({ meal, isOpen, onClose, onEditMeal, 
                 <span className="close" onClick={onClose}>&times;</span>
                 <div className="edit_container">
                     <h2>{editedMeal.strCategory}</h2>
-                    <img src={editedMeal.strCategoryThumb} alt={editedMeal.strCategory} />
+                    <div className='edit_meal_img_container'>
+                        <img className='edit_meal_img' src={editedMeal.strCategoryThumb} alt={editedMeal.strCategory} />
+                    </div>
                     <div className="textarea_edit_container">
                         <span>Description: </span>
                         <textarea

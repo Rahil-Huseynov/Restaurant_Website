@@ -6,6 +6,7 @@
   align-items: center;
   border: 1px solid black;
   width: 200px;
+  backdrop-filter: blur(5px);
   color: white;
 }
 
@@ -432,6 +433,8 @@ input::-webkit-inner-spin-button {
 
   .ordercount {
     font-size: 0.7rem;
+    color: white;
+
   }
 
   .logo_cart_cart {
@@ -747,7 +750,7 @@ input::-webkit-inner-spin-button {
 
 
   .dropbtn {
-    color: black;
+    color: white;
     font-size: 16px;
     border: none;
   }
@@ -782,6 +785,8 @@ input::-webkit-inner-spin-button {
 
   .ordercount {
     font-size: 0.7rem;
+    color: white;
+
   }
 
   .logo_cart_cart {
@@ -1049,6 +1054,8 @@ input::-webkit-inner-spin-button {
 
   .ordercount {
     font-size: 1rem;
+    color: white;
+
   }
 
   .logo_cart_cart {
@@ -1334,6 +1341,8 @@ input::-webkit-inner-spin-button {
 
   .ordercount {
     font-size: 1rem;
+    color: white;
+
   }
 
   .logo_cart_cart {
@@ -1593,6 +1602,8 @@ input::-webkit-inner-spin-button {
 
   .ordercount {
     font-size: 1rem;
+    color: white;
+
   }
 
   .logo_cart_cart {
@@ -1879,6 +1890,8 @@ input::-webkit-inner-spin-button {
 
   .ordercount {
     font-size: 1rem;
+    color: white;
+
   }
 
   .logo_cart_cart {

@@ -4,9 +4,8 @@
 }
 
 .order{
-    font-size: 2rem;
     font-weight: 800;   
-    color: brown;
+    color: #2c00a6;
 }
 
 .logo_cart_order{
@@ -15,6 +14,7 @@
 .order_item{
     width: 300px;
     text-align: center;
+    backdrop-filter: blur(5px);
 }
 
 .order_list{
@@ -96,7 +96,6 @@
     .order{
         font-size: 2rem;
         font-weight: 800;   
-        color: brown;
     }
     
     .order_item{
@@ -176,9 +175,8 @@
 }
     
     .order{
-        font-size: 2rem;
+        font-size: 3rem;
         font-weight: 800;   
-        color: brown;
     }
     
     .order_item{
@@ -257,9 +255,8 @@
     width: 50px;
 }
     .order{
-        font-size: 2rem;
+        font-size: 4rem;
         font-weight: 800;   
-        color: brown;
     }
     
     .order_item{
@@ -338,9 +335,8 @@
 }
     
     .order{
-        font-size: 2rem;
+        font-size: 5rem;
         font-weight: 800;   
-        color: brown;
     }
     
     .order_item{
@@ -419,9 +415,8 @@
 }
     
     .order{
-        font-size: 2rem;
+        font-size: 5rem;
         font-weight: 800;   
-        color: brown;
     }
     
     .order_item{

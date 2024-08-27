@@ -13,6 +13,18 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+.edit_meal_img_container {
+  display: flex;
+  justify-content: center;
+}
+
+.edit_meal_img {
+  display: flex;
+  justify-content: right;
+  padding-left: 2rem;
+  width: 300px;
+}
+
 .modal_content {
   border-radius: 20px;
   text-align: center;

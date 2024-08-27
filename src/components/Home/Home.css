@@ -1,5 +1,5 @@
 body {
-  background-image: url('../../assets/stacked-waves-haikei.svg');
+  background-image: url('../../assets/bcg-8.jpg');
   background-size: 42px 42px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -32,6 +32,10 @@ body {
   align-items: center;
   justify-content: space-around;
   height: 80px;
+}
+
+.meal_items{
+  backdrop-filter: blur(5px);
 }
 
 .search {
