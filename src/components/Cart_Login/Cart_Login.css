@@ -410,9 +410,9 @@ input::-webkit-inner-spin-button {
 
 .button-24:hover,
 .button-24:active {
-  background-color: initial;
+  transform: scale(1.1);
   background-position: 0 0;
-  color: #FF4742;
+  color: white;
 }
 
 .button-24:active {
@@ -696,9 +696,9 @@ input::-webkit-inner-spin-button {
 
   .button-24:hover,
   .button-24:active {
-    background-color: initial;
+    transform: scale(1.1);
     background-position: 0 0;
-    color: #FF4742;
+    color: white;
   }
 
   .button-24:active {
@@ -980,9 +980,9 @@ input::-webkit-inner-spin-button {
 
   .button-24:hover,
   .button-24:active {
-    background-color: initial;
+    transform: scale(1.1);
     background-position: 0 0;
-    color: #FF4742;
+    color: white;
   }
 
   .button-24:active {
@@ -1258,9 +1258,9 @@ input::-webkit-inner-spin-button {
 
   .button-24:hover,
   .button-24:active {
-    background-color: initial;
+    transform: scale(1.1);
     background-position: 0 0;
-    color: #FF4742;
+    color: white;
   }
 
   .button-24:active {
@@ -1536,9 +1536,9 @@ input::-webkit-inner-spin-button {
 
   .button-24:hover,
   .button-24:active {
-    background-color: initial;
+    transform: scale(1.1);
     background-position: 0 0;
-    color: #FF4742;
+    color: white;
   }
 
   .button-24:active {
@@ -1814,9 +1814,9 @@ input::-webkit-inner-spin-button {
 
   .button-24:hover,
   .button-24:active {
-    background-color: initial;
+    transform: scale(1.1);
     background-position: 0 0;
-    color: #FF4742;
+    color: white;
   }
 
   .button-24:active {
@@ -2086,9 +2086,9 @@ input::-webkit-inner-spin-button {
 
   .button-24:hover,
   .button-24:active {
-    background-color: initial;
+    transform: scale(1.1);
     background-position: 0 0;
-    color: #FF4742;
+    color: white;
   }
 
   .button-24:active {
