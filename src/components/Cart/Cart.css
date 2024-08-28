@@ -427,7 +427,10 @@ input::-webkit-inner-spin-button {
     border: 1px solid black;
     width: 200px;
   }
-
+  .wrapper .option .dot{
+    height: 20px;
+    width: 29px;
+  }
   .ordercount {
     font-size: 0.7rem;
     color: white;
@@ -718,7 +721,10 @@ input::-webkit-inner-spin-button {
     border: 1px solid black;
     width: 200px;
   }
-
+  .wrapper .option .dot{
+    height: 20px;
+    width: 29px;
+  }
   .logo_name_cart {
     font-family: "Playwrite AR", cursive;
     font-optical-sizing: auto;
@@ -1002,7 +1008,10 @@ input::-webkit-inner-spin-button {
     border: 1px solid black;
     width: 200px;
   }
-
+  .wrapper .option .dot{
+    height: 20px;
+    width: 30px;
+  }
   .logo_name_cart {
     font-size: 2rem;
     font-family: "Playwrite AR", cursive;
@@ -1282,7 +1291,10 @@ input::-webkit-inner-spin-button {
     border: 1px solid black;
     width: 200px;
   }
-
+  .wrapper .option .dot{
+    height: 20px;
+    width: 29px;
+  }
   .logo_name_cart {
     font-size: 2rem;
     font-family: "Playwrite AR", cursive;
@@ -1563,7 +1575,10 @@ input::-webkit-inner-spin-button {
     border: 1px solid black;
     width: 200px;
   }
-
+  .wrapper .option .dot{
+    height: 20px;
+    width: 20px;
+  }
   .logo_name_cart {
     font-size: 2rem;
     font-family: "Playwrite AR", cursive;
@@ -2032,7 +2047,10 @@ input::-webkit-inner-spin-button {
     -webkit-user-select: none;
     touch-action: manipulation;
   }
-
+  .wrapper .option .dot{
+    height: 20px;
+    width: 20px;
+  }
   .button-79:disabled {
     color: #787878;
     cursor: auto;
@@ -2127,8 +2145,6 @@ input::-webkit-inner-spin-button {
   transition: all 0.3s ease;
 }
 .wrapper .option .dot{
-  height: 20px;
-  width: 20px;
   background: #d9d9d9;
   border-radius: 50%;
   position: relative;

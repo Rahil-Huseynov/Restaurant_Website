@@ -66,10 +66,44 @@ a:hover {
  * CSS payment card
  */
 
-.payment-card {
+/* .payment-card {
     width: 60rem;
+} */
+@media (min-width:360px) {
+    .payment-card {
+        width: 75%;
+    }
 }
-
+@media (min-width:480px) {
+    .payment-card {
+        width: 40rem;
+    }
+}
+@media (min-width:768px) {
+    .payment-card {
+        width: 60rem;
+    }
+}
+@media (min-width:1024px) {
+    .payment-card {
+        width: 60rem;
+    }
+}
+@media (min-width:1240px) {
+    .payment-card {
+        width: 60rem;
+    }
+}
+@media (min-width:1440px) {
+    .payment-card {
+        width: 60rem;
+    }
+}
+@media (min-width:1600px) {
+    .payment-card {
+        width: 60rem;
+    }
+}
 .payment-card__footer {
     text-align: center;
     margin-top: 2rem;
@@ -282,6 +316,7 @@ a:hover {
 .payment-card__button:focus {
     background-color: #8e8b85;
 }
+
 .paymethod-modal {
     position: fixed;
     top: 0;
@@ -300,17 +335,96 @@ a:hover {
     border-radius: 8px;
 }
 
-.closepay {
-    position: absolute;
-    top: 30px;
-    right: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #000; 
-    cursor: pointer;
-    transition: color 0.3s ease;
+
+@media (min-width:360px) {
+    .closepay {
+        position: absolute;
+        top: 70px;
+        right: 35px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+}
+@media (min-width:480px) {
+    .closepay {
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+}
+@media (min-width:768px) {
+    .closepay {
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+}
+@media (min-width:1024px) {
+    .closepay {
+        position: absolute;
+        top: 40px;
+        right: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+}
+@media (min-width:1240px) {
+    .closepay {
+        position: absolute;
+        top: 40px;
+        right: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+}
+@media (min-width:1440px) {
+    .closepay {
+        position: absolute;
+        top: 40px;
+        right: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+}
+@media (min-width:1600px) {
+    .closepay {
+        position: absolute;
+        top: 40px;
+        right: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
 }
 
+
+
+
+
 .closepay:hover {
-    color: #ff0000; 
+    color: #ff0000;
 }

@@ -39,6 +39,7 @@ const Cart_Login = () => {
     const [orderCount, setOrderCount] = useState<number>(0);
     const [showPayMethod, setShowPayMethod] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const savedName = localStorage.getItem('name');
@@ -78,7 +79,8 @@ const Cart_Login = () => {
 
     const totalPrice = cartItems.reduce((acc, item) => acc + (item.totalPrice || 0), 0);
 
-    const handlePlaceOrder = () => {
+    const handlePlaceOrder = (event?: React.FormEvent) => {
+        if (event) event.preventDefault();
         if (!address.trim() || !phone.trim()) {
             setIsAddressValid(false);
             return;
@@ -87,40 +89,45 @@ const Cart_Login = () => {
             alert('Please select a payment method.');
             return;
         }
+        setLoading(true);
 
+        setTimeout(() => {
+            setLoading(false);
 
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
-        const hour = String(today.getHours()).padStart(2, '0');
-        const minute = String(today.getMinutes()).padStart(2, '0');
-        const nowdate = `${year}-${month}-${day} (${hour}:${minute})`;
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            const hour = String(today.getHours()).padStart(2, '0');
+            const minute = String(today.getMinutes()).padStart(2, '0');
+            const nowdate = `${year}-${month}-${day} (${hour}:${minute})`;
 
-        const newOrder: Order = {
-            items: cartItems,
-            orderDate: nowdate,
-            totalPrice,
-            paymentMethod,
-            address,
-            phone,
-            userName,
-        };
+            const newOrder: Order = {
+                items: cartItems,
+                orderDate: nowdate,
+                totalPrice,
+                paymentMethod,
+                address,
+                phone,
+                userName,
+            };
 
-        const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
-        const userIndex = storedUsers.findIndex((user: { name: string }) => user.name === userName);
-        if (userIndex !== -1) {
-            storedUsers[userIndex].cartOrder = [...storedUsers[userIndex].cartOrder, newOrder];
-            storedUsers[userIndex].cart = [];
-            localStorage.setItem('users', JSON.stringify(storedUsers));
-        }
-        setCartItems([]);
-        setAddress('');
-        setPhone('');
-        setPaymentMethod(null);
-        setIsAddressValid(true);
-        window.location.reload();
+            const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+            const userIndex = storedUsers.findIndex((user: { name: string }) => user.name === userName);
+            if (userIndex !== -1) {
+                storedUsers[userIndex].cartOrder = [...storedUsers[userIndex].cartOrder, newOrder];
+                storedUsers[userIndex].cart = [];
+                localStorage.setItem('users', JSON.stringify(storedUsers));
+            }
+            setCartItems([]);
+            setAddress('');
+            setPhone('');
+            setPaymentMethod(null);
+            setIsAddressValid(true);
+            window.location.reload();
+        }, 2000);
     };
+
 
     const filteredItems = cartItems.filter(item =>
         item.strCategory.toLowerCase().includes(searchQuery.toLowerCase())
@@ -317,8 +324,9 @@ const Cart_Login = () => {
                                                         handlePlaceOrder();
                                                     }
                                                 }}
+                                                disabled={loading}
                                             >
-                                                Place an order!
+                                                {loading ? 'Processing...' : 'Place an order!'}
                                             </button>
                                         </div>
                                     </div>
