@@ -95,7 +95,7 @@ const Cart = () => {
                         <div>
                             <Link style={{ textDecoration: 'none', color: 'black' }} to="/profil">
                                 <img className='logo_cart' src={cart} alt="Cart" />
-                                <span>{orderCount}</span>
+                                <span style={{color:'white'}}>{orderCount}</span>
                             </Link>
                         </div>
                         <Link to='/profil'>
