@@ -193,7 +193,7 @@ const Profil = () => {
                                     className={`input_profil ${nameError ? 'error' : ''}`}
                                     type="text"
                                     name="txt"
-                                    placeholder="User name"
+                                    placeholder="Username"
                                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                         setName(e.target.value);
                                         if (/\d/.test(e.target.value)) {
