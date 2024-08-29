@@ -20,13 +20,10 @@
 	justify-content: space-around;
 }
 
-.input_profil_password:focus+.container_checker_password {
-	display: flex;
-	justify-content: center;
-}
 
 .container_checker_password {
-	display: none;
+	display: flex;
+	justify-content: center;
 }
 
 .power-container {
