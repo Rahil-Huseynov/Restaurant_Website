@@ -31,7 +31,7 @@ const Profil = () => {
             setEmailError(true);
             return;
         }
-        if (!nameRegex.test(name)) {
+        if (!nameRegex.test(name) || /\d/.test(name)) {
             setNameError(true);
             return;
         }
@@ -42,22 +42,9 @@ const Profil = () => {
 
         const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
         const isEmailExists = storedUsers.some((user: { email: string }) => user.email === email);
-        const isNameExists = storedUsers.some((user: { name: string }) => user.name === name);
 
         if (isEmailExists) {
             setEmailError(true);
-            const errorPanel = document.getElementById('errorPanel');
-            if (errorPanel) {
-                errorPanel.classList.add('active');
-                setTimeout(() => {
-                    errorPanel.classList.remove('active');
-                }, 2000);
-            }
-            return;
-        }
-
-        if (isNameExists) {
-            setNameError(true);
             const errorPanel = document.getElementById('errorPanel');
             if (errorPanel) {
                 errorPanel.classList.add('active');
@@ -196,7 +183,7 @@ const Profil = () => {
                                     className={`input_profil ${nameError ? 'error' : ''}`}
                                     type="text"
                                     name="txt"
-                                    placeholder="User name"
+                                    placeholder="Username"
                                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
                                     onFocus={handleFocus}
                                 />
