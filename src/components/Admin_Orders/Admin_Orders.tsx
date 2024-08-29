@@ -22,6 +22,7 @@ interface Order {
     address: string;
     totalPrice: number;
     phone: string;
+    paymentMethod: string;  
     userName: string;
 }
 
