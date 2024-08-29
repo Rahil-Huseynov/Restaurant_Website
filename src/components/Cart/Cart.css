@@ -285,16 +285,6 @@ input::-webkit-inner-spin-button {
   outline: none;
 }
 
-.order_history {
-  display: flex;
-  gap: 1rem;
-  text-align: center;
-  overflow: scroll;
-  width: 100%;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-}
-
 .order_items {
   display: flex;
   justify-content: center;
@@ -575,16 +565,6 @@ input::-webkit-inner-spin-button {
     height: 20px;
     text-align: center;
   }
-
-  .order_history {
-    display: flex;
-    gap: 1rem;
-    text-align: center;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom: 1rem;
-  }
-
   .order_items {
     display: flex;
     justify-content: center;
@@ -865,14 +845,6 @@ input::-webkit-inner-spin-button {
     text-align: center;
   }
 
-  .order_history {
-    display: flex;
-    gap: 1rem;
-    text-align: center;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom: 1rem;
-  }
 
   .order_items {
     display: flex;
@@ -1149,14 +1121,6 @@ input::-webkit-inner-spin-button {
     text-align: center;
   }
 
-  .order_history {
-    display: flex;
-    gap: 1rem;
-    text-align: center;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom: 1rem;
-  }
 
   .order_items {
     display: flex;
@@ -1430,15 +1394,6 @@ input::-webkit-inner-spin-button {
     width: 70%;
     height: 20px;
     text-align: center;
-  }
-
-  .order_history {
-    display: flex;
-    gap: 1rem;
-    text-align: center;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom: 1rem;
   }
 
   .order_items {
@@ -1715,15 +1670,6 @@ input::-webkit-inner-spin-button {
     text-align: center;
   }
 
-  .order_history {
-    display: flex;
-    gap: 1rem;
-    text-align: center;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom: 1rem;
-  }
-
   .order_items {
     display: flex;
     justify-content: center;
@@ -1987,15 +1933,6 @@ input::-webkit-inner-spin-button {
     width: 70%;
     height: 20px;
     text-align: center;
-  }
-
-  .order_history {
-    display: flex;
-    gap: 1rem;
-    text-align: center;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom: 1rem;
   }
 
   .order_items {

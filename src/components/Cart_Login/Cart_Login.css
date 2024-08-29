@@ -280,12 +280,31 @@ input::-webkit-inner-spin-button {
   border-bottom: 3px solid white;
   outline: none;
 }
+#style-2::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#style-2::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#style-2::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #D62929;
+}
 
 .order_history {
   display: flex;
   gap: 1rem;
   text-align: center;
-  overflow: scroll;
+  overflow: auto;
   width: 100%;
   padding-bottom: 1rem;
   padding-left: 1rem;
@@ -575,15 +594,6 @@ input::-webkit-inner-spin-button {
     text-align: center;
   }
 
-  .order_history {
-    display: flex;
-    gap: 1rem;
-    text-align: center;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom: 1rem;
-  }
-
   .order_items {
     display: flex;
     justify-content: center;
@@ -861,14 +871,6 @@ input::-webkit-inner-spin-button {
     text-align: center;
   }
 
-  .order_history {
-    display: flex;
-    gap: 1rem;
-    text-align: center;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom: 1rem;
-  }
 
   .order_items {
     display: flex;
@@ -1142,14 +1144,7 @@ input::-webkit-inner-spin-button {
     text-align: center;
   }
 
-  .order_history {
-    display: flex;
-    gap: 1rem;
-    text-align: center;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom: 1rem;
-  }
+
 
   .order_items {
     display: flex;
@@ -1420,15 +1415,6 @@ input::-webkit-inner-spin-button {
     width: 70%;
     height: 20px;
     text-align: center;
-  }
-
-  .order_history {
-    display: flex;
-    gap: 1rem;
-    text-align: center;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom: 1rem;
   }
 
   .order_items {
@@ -1702,15 +1688,6 @@ input::-webkit-inner-spin-button {
     text-align: center;
   }
 
-  .order_history {
-    display: flex;
-    gap: 1rem;
-    text-align: center;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom: 1rem;
-  }
-
   .order_items {
     display: flex;
     justify-content: center;
@@ -1974,15 +1951,6 @@ input::-webkit-inner-spin-button {
     width: 70%;
     height: 20px;
     text-align: center;
-  }
-
-  .order_history {
-    display: flex;
-    gap: 1rem;
-    text-align: center;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom: 1rem;
   }
 
   .order_items {

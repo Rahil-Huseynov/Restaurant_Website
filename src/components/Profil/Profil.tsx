@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import user from './../../assets/user.png';
 
 const Profil = () => {
-
     const [isSignUp, setIsSignUp] = useState<boolean>(true);
     const [email, setEmail] = useState<string>('');
     const [name, setName] = useState<string>('');
@@ -42,9 +41,22 @@ const Profil = () => {
 
         const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
         const isEmailExists = storedUsers.some((user: { email: string }) => user.email === email);
+        const isNameExists = storedUsers.some((user: { name: string }) => user.name === name);
 
         if (isEmailExists) {
             setEmailError(true);
+            const errorPanel = document.getElementById('errorPanel');
+            if (errorPanel) {
+                errorPanel.classList.add('active');
+                setTimeout(() => {
+                    errorPanel.classList.remove('active');
+                }, 2000);
+            }
+            return;
+        }
+
+        if (isNameExists) {
+            setNameError(true);
             const errorPanel = document.getElementById('errorPanel');
             if (errorPanel) {
                 errorPanel.classList.add('active');
@@ -98,8 +110,7 @@ const Profil = () => {
             setTimeout(() => {
                 navigate('/profil_login');
             }, 1000);
-        }
-        else if (email === 'admin' && password === 'admin') {
+        } else if (email === 'admin' && password === 'admin') {
             const successPanel = document.getElementById('successPanel');
             if (successPanel) {
                 successPanel.classList.add('active');
@@ -110,8 +121,7 @@ const Profil = () => {
             setTimeout(() => {
                 navigate('/admin');
             }, 1000);
-        }
-        else {
+        } else {
             const errorPanel = document.getElementById('errorPanel');
             if (errorPanel) {
                 errorPanel.classList.add('active');
@@ -183,8 +193,17 @@ const Profil = () => {
                                     className={`input_profil ${nameError ? 'error' : ''}`}
                                     type="text"
                                     name="txt"
-                                    placeholder="Username"
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+                                    placeholder="User name"
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                        setName(e.target.value);
+                                        if (/\d/.test(e.target.value)) {
+                                            e.target.classList.add('error');
+                                            setNameError(true);
+                                        } else {
+                                            e.target.classList.remove('error');
+                                            setNameError(false);
+                                        }
+                                    }}
                                     onFocus={handleFocus}
                                 />
                                 <input
@@ -214,12 +233,11 @@ const Profil = () => {
                                 <button className='singup_login_button' onClick={handleSignUp}>Sign up</button>
                             </div>
                         </div>
-
                         <div className={`login ${!isSignUp ? 'active' : 'inactive'}`}>
                             <div>
                                 <label className='label_profil' htmlFor='chk' aria-hidden="true">Login</label>
                                 <input
-                                    className={`input_profil ${!isSignUp && emailError ? 'error' : ''}`}
+                                    className={`input_profil ${emailError ? 'error' : ''}`}
                                     type="email"
                                     name="email"
                                     placeholder="Email"
@@ -227,7 +245,7 @@ const Profil = () => {
                                     onFocus={handleFocus}
                                 />
                                 <input
-                                    className={`input_profil ${!isSignUp && passwordError ? 'error' : ''}`}
+                                    className={`input_profil ${passwordError ? 'error' : ''}`}
                                     type="password"
                                     name="pswd"
                                     placeholder="Password"

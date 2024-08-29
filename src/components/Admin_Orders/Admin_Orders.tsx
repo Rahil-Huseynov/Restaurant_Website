@@ -93,7 +93,7 @@ const Admin_Orders = () => {
                         <div>
                             <Link style={{ textDecoration: 'none', color: 'black' }} to="/admin/adminorders">
                                 <img className='logo_cart' src={order} alt="order" />
-                                <span>{orders.length}</span>
+                                <span style={{color:'white'}}>{orders.length}</span>
                             </Link>
                         </div>
                         <div className="dropdown">
