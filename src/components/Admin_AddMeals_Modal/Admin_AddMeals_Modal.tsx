@@ -16,6 +16,13 @@ interface ModalProps {
 
 const Admin_AddMeals_Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
+    const [newMeal, setNewMeal] = useState<Meal>({
+        idCategory: 15,
+        strCategory: '',
+        strCategoryThumb: '',
+        strCategoryDescription: '',
+        price: undefined
+    });
 
     useEffect(() => {
         setIsModalOpen(isOpen);
@@ -25,14 +32,6 @@ const Admin_AddMeals_Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             document.body.classList.remove('no-scroll');
         }
     }, [isOpen]);
-
-    const [newMeal, setNewMeal] = useState<Meal>({
-        idCategory: 15,
-        strCategory: '',
-        strCategoryThumb: '',
-        strCategoryDescription: '',
-        price: undefined
-    });
 
     useEffect(() => {
         if (isOpen) {
@@ -56,23 +55,30 @@ const Admin_AddMeals_Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         }));
     };
 
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setNewMeal(prevMeal => ({
+                    ...prevMeal,
+                    strCategoryThumb: reader.result as string
+                }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
     const handleAdd = () => {
         const data = localStorage.getItem('filteredData');
-
         const existingData: Meal[] = data ? JSON.parse(data) : [];
-
         const maxIdCategory = existingData.reduce((max, meal) => meal.idCategory > max ? meal.idCategory : max, 14);
-
         const newIdCategory = maxIdCategory + 1;
-
         const updatedMeal = { ...newMeal, idCategory: newIdCategory };
-
         const updatedData = [...existingData, updatedMeal];
-
         localStorage.setItem('filteredData', JSON.stringify(updatedData));
-
         onClose();
     };
+
 
     return (
         <div className="modal">
@@ -80,8 +86,17 @@ const Admin_AddMeals_Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 <span className="close" onClick={onClose}>&times;</span>
                 <div className="edit_container">
                     <h2>Add New Meal</h2>
+                    {newMeal.strCategoryThumb && (
+                        <div className='meal-thumbnail-container'>
+                            <img
+                                src={newMeal.strCategoryThumb}
+                                alt="Meal Thumbnail"
+                                className="meal-thumbnail"
+                            />
+                        </div>
+                    )}
                     <div className="input_edit_container">
-                        <span style={{paddingRight:'3rem'}}>Name:</span>
+                        <span style={{ paddingRight: '3rem' }}>Name:</span>
                         <input
                             className="input_edit"
                             type="text"
@@ -92,13 +107,12 @@ const Admin_AddMeals_Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                         />
                     </div>
                     <div className="input_edit_container">
-                        <span>Image URL:</span>
+                        <span>Image:</span>
                         <input
                             className="input_edit"
-                            type="text"
-                            name="strCategoryThumb"
-                            value={newMeal.strCategoryThumb}
-                            onChange={handleInputChange}
+                            type="file"
+                            accept="image/png"
+                            onChange={handleImageChange}
                             placeholder="Image URL"
                         />
                     </div>

@@ -22,7 +22,14 @@
   border: 1px solid #888;
   width: 500px;
 }
+.meal-thumbnail{
+  width: 300px;
+}
+.meal-thumbnail-container{
+  display: flex;
+  justify-content: center;
 
+}
 .close {
   color: #aaa;
   float: right;

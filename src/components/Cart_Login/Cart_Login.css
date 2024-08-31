@@ -9,6 +9,7 @@
   width: 200px;
   backdrop-filter: brightness(40%);
   color: white;
+  min-height:350px
 }
 
 .address_input.invalid {

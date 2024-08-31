@@ -9,6 +9,7 @@
   width: 200px;
   backdrop-filter: brightness(40%);
   color: white;
+  min-height:350px
 }
 
 .address_input.invalid {
@@ -694,6 +695,17 @@ input::-webkit-inner-spin-button {
 
 }
 
+@media (min-width:480px) {
+  .container_cart_buy {
+    display: grid;
+    padding: 2rem;
+    border: 1px solid black;
+    min-width: 400px;
+    text-align: center;
+  }
+
+}
+
 @media (min-width:768px) {
   .container_item {
     display: grid;
@@ -789,7 +801,7 @@ input::-webkit-inner-spin-button {
     display: grid;
     padding: 2rem;
     border: 1px solid black;
-    width: 300px;
+    min-width: 400px;
     text-align: center;
   }
 
@@ -1069,7 +1081,7 @@ input::-webkit-inner-spin-button {
     display: grid;
     padding: 2rem;
     border: 1px solid black;
-    width: 300px;
+    min-width: 400px;
     text-align: center;
   }
 
@@ -1344,7 +1356,7 @@ input::-webkit-inner-spin-button {
     display: grid;
     padding: 2rem;
     border: 1px solid black;
-    width: 300px;
+    min-width: 400px;
     text-align: center;
   }
 
@@ -1618,7 +1630,7 @@ input::-webkit-inner-spin-button {
     display: grid;
     padding: 2rem;
     border: 1px solid black;
-    width: 450px;
+    min-width: 400px;
     text-align: center;
   }
 
@@ -1884,7 +1896,7 @@ input::-webkit-inner-spin-button {
     display: grid;
     padding: 2rem;
     border: 1px solid black;
-    width: 500px;
+    min-width: 400px;
     text-align: center;
   }
 
